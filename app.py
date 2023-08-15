@@ -3,6 +3,7 @@ from time import sleep
 import requests
 from flask import Flask, render_template, request
 from datetime import datetime
+from loguru import logger
 
 app = Flask(__name__)
 
@@ -39,9 +40,9 @@ def send_message_to_processing(text: str, user_id: int) -> None:
     response = requests.post(ADD_MESSAGE_URL, json=payload)
 
     if response.status_code == 200:
-        print(F"Message <{text}> added successfully")
+        logger.debug(F"Message <{text}> added successfully")
     else:
-        print(f"Failed to add message <{text}>")
+        logger.debug(f"Failed to add message <{text}>")
 
 
 def receive_answer(user_id: int) -> dict:
@@ -49,10 +50,10 @@ def receive_answer(user_id: int) -> dict:
 
     if response.status_code == 200:
         answer = response.json().get("text")
-        print("Answer:", answer)
+        logger.debug("Answer:", answer)
         return response.json()
     else:
-        print("Failed to get answer")
+        logger.debug("Failed to get answer")
         return {}
 
 
