@@ -34,6 +34,20 @@ def process_text():
     answer_text = response.get("text")
     return render_template("index.html", output=answer_text)
 
+@app.route("/send_message", methods=["POST"])
+def send_message_to_api():
+    user_input = request.get_json().get("message")
+    user_id = 228228
+    print(user_input)
+    if user_input == "/clear":
+        response = clear_memory(user_id=user_id)
+    else:
+        send_message_to_processing(text=user_input, user_id=user_id)
+        sleep(0.1)
+        response = receive_answer(user_id)
+    answer_text = response.get("text")
+    return {"response": 200}
+
 
 def send_message_to_processing(text: str, user_id: int) -> None:
     payload = {

@@ -15,8 +15,18 @@ closeButton.addEventListener('click', () => {
 
 sendButton.addEventListener('click', () => {
     const message = messageInput.value.trim();
+    const endpoint = sendButton.getAttribute('data-endpoint');
     if (message !== '') {
         addMessage('user', message);
+        fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: message
+            })
+        })
         messageInput.value = '';
     }
 });
