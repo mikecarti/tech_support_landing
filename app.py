@@ -20,6 +20,22 @@ LIMIT_EXCEEDED_CODE = 429
 def index():
     return render_template("index.html")
 
+
+@app.route("/send-message", methods=["POST"])
+def process_text():
+    user_input = request.form["user_input"]
+    user_id = 228228
+
+    match user_input:
+        case "/clear":
+            response = clear_memory(user_id=user_id)
+        case _:
+            send_message_to_processing(text=user_input, user_id=user_id)
+            response = receive_answer(user_id)
+    answer_text = response.get("text")
+    return render_template("index.html", output=answer_text)
+
+
 @app.route("/send-message", methods=["POST"])
 def send_message_to_api():
     chat_data = request.get_json()
@@ -35,6 +51,7 @@ def send_message_to_api():
     answer_text = response.get("text")
     return jsonify({'response': answer_text, "sliders": slider_data, "status_code": 200})
 
+
 @app.route("/manual-slider-update", methods=["POST"])
 def manual_slider_update():
     data = request.get_json()
@@ -42,12 +59,14 @@ def manual_slider_update():
     id = data.get("sliderID")
     return {"slider_id": id, "slider_value": value, "status_code": 200}
 
+
 @app.route("/process-sliders", methods=["POST"])
 def process_sliders():
     sliders = request.args
     print(sliders, "successfully")
     response_data = {"message": "OK"}
     return jsonify({"sliders_data": sliders, "status_code": 200, "response": response_data})
+
 
 def send_message_to_processing(text: str, user_id: int) -> None:
     payload = {
@@ -68,7 +87,8 @@ def send_message_to_processing(text: str, user_id: int) -> None:
 
 def receive_answer(user_id: int, anger_level: int, misspelling_level: int) -> dict:
     while True:
-        response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "anger_level": anger_level, "misspelling_level": misspelling_level})
+        response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "anger_level": anger_level,
+                                                           "misspelling_level": misspelling_level})
         wait_btw_retries_seconds = 1
         sleep(wait_btw_retries_seconds)
         logger.warning(f"Anti-Spam limit exceeded. Retrying in {wait_btw_retries_seconds} seconds...")
