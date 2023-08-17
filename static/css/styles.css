@@ -47,3 +47,31 @@ button {
     border: none;
     cursor: pointer;
 }
+
+.message-user{
+    position: relative;
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.message::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 20px;
+    border-color: transparent transparent transparent #DCF8C6;
+}
+
+.message-llm{
+    border: 2px solid rgb(202, 91, 128);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}

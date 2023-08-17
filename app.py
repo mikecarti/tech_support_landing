@@ -1,13 +1,13 @@
 from time import sleep
 
 import requests
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from datetime import datetime
 from loguru import logger
 
 app = Flask(__name__)
 
-BASE_URL = "http://0.0.0.0:8000"
+BASE_URL = "http://127.0.0.1:8000"
 ADD_MESSAGE_URL = f"{BASE_URL}/add_message"
 ANSWER_MESSAGE_URL = f"{BASE_URL}/answer_message"
 CLEAR_MEMORY_URL = f"{BASE_URL}/clear_memory/" + "{user_id}"
@@ -46,7 +46,8 @@ def send_message_to_api():
         sleep(0.1)
         response = receive_answer(user_id)
     answer_text = response.get("text")
-    return {"response": 200}
+    print(jsonify({'response': answer_text}))
+    return jsonify({'response': answer_text})
 
 
 def send_message_to_processing(text: str, user_id: int) -> None:
