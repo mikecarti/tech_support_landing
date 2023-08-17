@@ -17,7 +17,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 300px;
+    width: 450px;
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -48,12 +48,19 @@ button {
     cursor: pointer;
 }
 
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+}
+
 .message-user{
-    position: relative;
+    float: right;
     border: 2px solid blue;
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
+    text-align: justify;
+    max-width: 225px;
 }
 
 .message::before {
@@ -70,8 +77,11 @@ button {
 }
 
 .message-llm{
+    float: left;
     border: 2px solid rgb(202, 91, 128);
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
+    text-align: justify;
+    max-width: 225px;
 }

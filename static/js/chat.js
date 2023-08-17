@@ -31,6 +31,7 @@ sendButton.addEventListener('click', () => {
 function getLlmAnswer(message, endpoint) {
     if (message !== '') {
         addMessage('user', message);
+        scrollToBottom();
         fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -44,6 +45,7 @@ function getLlmAnswer(message, endpoint) {
             .then(data =>{
                 const responseText = data.response;
                 addMessage('llm',responseText);
+                scrollToBottom();
             })
         
     }
@@ -51,14 +53,14 @@ function getLlmAnswer(message, endpoint) {
 
 function addMessage(sender, text) {
     const messageElement = document.createElement('div');
+    const messageContainer = document.createElement('div');
+    messageContainer.className ='message-container';
     messageElement.className = `message-${sender}`;
     messageElement.textContent = text;
-    chatMessages.appendChild(messageElement);
+    messageContainer.appendChild(messageElement);
+    chatMessages.appendChild(messageContainer);
 }
 
-function addLLMMessage(text) {
-    const llmResponseElement = document.createElement('div');
-    llmResponseElement.className = 'llm-response';
-    llmResponseElement.textContent = text;
-    llmResponse.appendChild(llmResponseElement);
+function scrollToBottom() {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
