@@ -1,7 +1,7 @@
 from time import sleep
 
 import requests
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session
 from datetime import datetime
 from loguru import logger
 
@@ -19,26 +19,13 @@ LIMIT_EXCEEDED_CODE = 429
 def index():
     return render_template("index.html")
 
-
-@app.route("/", methods=["POST"])
-def process_text():
-    user_input = request.form["user_input"]
-    user_id = 228228
-
-    if user_input == "/clear":
-        response = clear_memory(user_id=user_id)
-    else:
-        send_message_to_processing(text=user_input, user_id=user_id)
-        sleep(0.1)
-        response = receive_answer(user_id)
-    answer_text = response.get("text")
-    return render_template("index.html", output=answer_text)
-
-@app.route("/send_message", methods=["POST"])
+@app.route("/send-message", methods=["POST"])
 def send_message_to_api():
     user_input = request.get_json().get("message")
+    print(response)
     user_id = 228228
-    print(user_input)
+    slidersData = process_sliders()
+    print(slidersData, process_sliders())
     if user_input == "/clear":
         response = clear_memory(user_id=user_id)
     else:
@@ -46,9 +33,21 @@ def send_message_to_api():
         sleep(0.1)
         response = receive_answer(user_id)
     answer_text = response.get("text")
-    print(jsonify({'response': answer_text}))
     return jsonify({'response': answer_text})
 
+@app.route("/manual-slider-update", methods=["POST"])
+def manual_slider_update():
+    data = request.get_json()
+    value = data.get("sliderValue")
+    id = data.get("sliderID")
+    return {"slider_id": id, "slider_value": value, "status_code": 200}
+
+@app.route("/process-sliders", methods=["POST"])
+def process_sliders():
+    sliders = request.get_json()
+    print(sliders)
+    response_data = {"message": "OK"}
+    return jsonify({"sliders_data": sliders, "status_code": 200, "response": response_data})
 
 def send_message_to_processing(text: str, user_id: int) -> None:
     payload = {
