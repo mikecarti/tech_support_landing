@@ -1,5 +1,7 @@
 import { drawMessage, scrollToBottom} from "./chat_functionality.js";
 
+const debugButton = document.getElementById("debug-button");
+const timeout = document.getElementById("timeout");
 
 const fake_user_messages = [
     "Какой сегодня день?",
@@ -30,17 +32,19 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-for (let i = 0; i < fake_user_messages.length; i++) {
-    await sleep(100);
+async function welcome(timeout) {
+  console.log(timeout);
+  for (let i = 0; i < fake_user_messages.length; i++) {
     drawMessage("user", fake_user_messages[i]);
     scrollToBottom();
-    await sleep(100)
+    await sleep(timeout)
     drawMessage("llm", bot_messages[i]);
     scrollToBottom();
+    await sleep(timeout);
+  }
 }
 
-  
-  
-  
-  
-  
+
+debugButton.addEventListener("click", async () => {
+  await welcome(Number(timeout.value.trim()));
+});

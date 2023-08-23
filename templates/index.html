@@ -38,6 +38,11 @@
             <input type="range" min="0" max="3" value="0" step="1" id="bot-grammar-nazi">
             <input type="range" min="0" max="3" value="0" step="1" id="bot-rage">
         </div>
+        <div class="debug">
+            <!--Дебаг: кнопка запуска заготовленных сообщений-->
+            <button id="debug-button">Отладочные сообщения</button>
+            <input type="text" id="timeout" placeholder="Введите кол-во задержки в мс...">
+        </div>
         
     </div>
     <script type="module" src="{{ url_for('static', filename='js/chat_functionality.js') }}"></script>
