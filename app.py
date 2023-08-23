@@ -68,7 +68,8 @@ def send_message_to_processing(text: str, user_id: int) -> None:
 
 def receive_answer(user_id: int, anger_level: int, misspelling_level: int) -> dict:
     while True:
-        response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "anger_level": anger_level, "misspelling_level": misspelling_level})
+        sliders = {"anger_level": anger_level, "misspelling_level": misspelling_level}
+        response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "sliders": sliders})
         wait_btw_retries_seconds = 1
         sleep(wait_btw_retries_seconds)
         logger.warning(f"Anti-Spam limit exceeded. Retrying in {wait_btw_retries_seconds} seconds...")
