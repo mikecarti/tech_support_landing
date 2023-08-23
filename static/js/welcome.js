@@ -1,4 +1,4 @@
-import { addMessage, scrollToBottom} from "./chat_functionality.js";
+import { drawMessage, scrollToBottom} from "./chat_functionality.js";
 
 
 const fake_user_messages = [
@@ -29,15 +29,16 @@ const bot_messages = [
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
+/*
 for (let i = 0; i < fake_user_messages.length; i++) {
     await sleep(900);
-    addMessage("user", fake_user_messages[i]);
+    drawMessage("user", fake_user_messages[i]);
     scrollToBottom();
     await sleep(900)
-    addMessage("llm", bot_messages[i]);
+    drawMessage("llm", bot_messages[i]);
     scrollToBottom();
 }
+*/
   
   
   

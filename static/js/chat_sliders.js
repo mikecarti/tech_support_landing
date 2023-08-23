@@ -5,7 +5,7 @@ const bot_rage_slider = document.getElementById("bot-rage");
 
 const sliders = document.querySelectorAll("input[type='range']");
 
-export function nodeSlidersToJSONSldiers(nodeSliders) {
+export function nodeSlidersToJSONSliders(nodeSliders) {
     const slidersArray = Array.from(nodeSliders);
     const slidersData = slidersArray.map(slider => {
         return {
@@ -17,7 +17,7 @@ export function nodeSlidersToJSONSldiers(nodeSliders) {
 }
 
 function handleSliderChange(sliderID, sliderValue) {
-    console.log(`Значение ползунка ${sliderID} изменено на ${sliderValue}`);
+    // console.log(`Значение ползунка ${sliderID} изменено на ${sliderValue}`);
 }
 
 function sendSliderDataToBackend(sliderID, sliderValue) {
@@ -35,8 +35,9 @@ function sendSliderDataToBackend(sliderID, sliderValue) {
 }
 
 export function sendSlidersDataToEndpoint(sliders, endpoint) {
+    /*
     fetch(endpoint, {
-        method: "POST",
+        method: "GET",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -47,6 +48,15 @@ export function sendSlidersDataToEndpoint(sliders, endpoint) {
         console.log(data);
     })
     .catch(error => console.error("Произошла ошибка", error));
+    */
+    const jsonString = JSON.stringify(sliders);
+    var urlEncodedJson = encodeURIComponent(jsonString);
+    var url = `http://localhost:5000/${endpoint}?sliderID=${urlEncodedJson}`
+    fetch(url)
+        .then(response => response.text())
+        .then(responseText => console.log(responseText))
+        .catch(error => console.error("Произошла ошибка", error));
+    console.log(url);
 }
 
 sliders.forEach((slider) => {
