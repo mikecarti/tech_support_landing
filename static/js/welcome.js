@@ -29,16 +29,16 @@ const bot_messages = [
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-/*
+
 for (let i = 0; i < fake_user_messages.length; i++) {
-    await sleep(900);
+    await sleep(100);
     drawMessage("user", fake_user_messages[i]);
     scrollToBottom();
-    await sleep(900)
+    await sleep(100)
     drawMessage("llm", bot_messages[i]);
     scrollToBottom();
 }
-*/
+
   
   
   

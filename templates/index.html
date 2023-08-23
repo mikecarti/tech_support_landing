@@ -21,6 +21,10 @@
     <a href="#something">Перейти к этому месту</a>
     <button id="open-popup" class="open-button">Открыть чат</button>
     <div class="chat-popup" id="chat-popup">
+        <div class="close-button-container">
+            <button class="close-button" id="close-button">✖</button>
+        </div>
+        <div class="separator"></div>
         <div class="chat-messages" id="chat-messages">
             <!-- Здесь будут отображаться сообщения -->
         </div>
@@ -34,7 +38,7 @@
             <input type="range" min="0" max="3" value="0" step="1" id="bot-grammar-nazi">
             <input type="range" min="0" max="3" value="0" step="1" id="bot-rage">
         </div>
-        <button id="close-button">Закрыть</button>
+        
     </div>
     <script type="module" src="{{ url_for('static', filename='js/chat_functionality.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/welcome.js') }}"></script>

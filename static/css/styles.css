@@ -13,17 +13,44 @@
 
 .chat-popup {
     z-index: 1001;
-    display: block;
+    display: none;
     position: fixed;
     bottom: 20px;
     right: 20px;
     width: 450px;
-    background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 15px 0px 0px;
+    background-color: rgba(212, 212, 212, 0.9); /* Цвет фона с прозрачностью */
+    backdrop-filter: blur(10px);
+}
+
+.close-button-container {
+    text-align: right; /* Выравнивание кнопки вправо */
+    padding: 5px 5px; /* Добавьте отступ вокруг кнопки */
+}
+
+.close-button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: 32px; /* Увеличьте размер икони */
+    line-height: 1;
+}
+
+.separator {
+    z-index: 1003;
+    height: 3px;
+    background-color: #ccc;
+    position: relative;
+    margin: 0px 0; /* Расстояние от разделительной полосы до сообщений */
+    box-shadow: 0px 2px 2px rgba(212, 212, 212, 0.9);
 }
 
 .chat-messages {
+    z-index: 1002;
+    position: relative;
     padding: 10px;
     max-height: 300px;
     overflow-y: auto;
@@ -55,12 +82,14 @@ button {
 
 .message-user{
     float: right;
-    border: 2px solid blue;
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
     text-align: justify;
     max-width: 225px;
+    background-color: rgb(210, 188, 149);
+    border-radius: 10px 0px 10px 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .message::before {
@@ -78,10 +107,12 @@ button {
 
 .message-llm{
     float: left;
-    border: 2px solid rgb(202, 91, 128);
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
     text-align: justify;
     max-width: 225px;
+    background-color: rgb(231, 231, 231);
+    border-radius: 0px 10px 10px 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
