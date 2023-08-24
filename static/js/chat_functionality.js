@@ -39,9 +39,11 @@ function combineMessageAndSliders(message, nodeSliders) {
 
 export function sendMessageAndGetResponse(message, nodeSliders, endpoint) {
     if (message!=='') {
+        console.log(message);
         drawMessage('user', message);
         scrollToBottom();
         const combinedData = combineMessageAndSliders(message, nodeSliders);
+        console.log(combinedData);
         fetch(endpoint, {
             method: 'POST',
             headers: {

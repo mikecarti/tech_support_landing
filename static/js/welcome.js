@@ -71,8 +71,7 @@ function welcome_chat(){
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      drawMessage('user', data.response);
-      scrollToBottom();
+      console.log(data.response);
       sendMessageAndGetResponse(data.response, welcome_sliders, "/send-message")
   })
   }

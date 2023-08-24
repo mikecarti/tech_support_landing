@@ -33,17 +33,15 @@ def index():
 @app.route("/welcome", methods=["POST"])
 def welcome():
     data = request.get_json()
+    sliders = get_sliders(slider_data=data["data"]["sliders"], bot_type=BotType.ASKER_BOT)
     print(data, "successfully")
     payload = {
         "text": "",
-        "sliders": {
-
-        },
-        "required_question_index": 1
+        "sliders": sliders,
+        "required_question_index": data["data"]["required_question_index"]
     }
-    question = requests.post(ASKER_QUESTION_URL, json=payload).json()
-    print(question, "successfully")
-    return jsonify({"response": 0})
+    question = requests.get(ASKER_QUESTION_URL, json=payload).json()
+    return jsonify({"response": question})
 
 
 @app.route("/send-message", methods=["POST"])
@@ -51,7 +49,6 @@ def send_message_to_api():
     chat_data = request.get_json()
     user_input = chat_data["chat"]["message"]
     sliders = get_sliders(slider_data=chat_data["sliders"], bot_type=BotType.HELPDESK_BOT)
-
     user_id = 228228
     if user_input == "/clear":
         response = clear_memory(user_id=user_id)
@@ -63,7 +60,7 @@ def send_message_to_api():
     return jsonify({'response': answer_text, "sliders": sliders, "status_code": 200})
 
 
-def get_sliders(slider_data: dict, bot_type: BotType) -> dict[str, int]:
+def get_sliders(slider_data: list[dict], bot_type: BotType) -> dict[str, int]:
     """
     :param slider_data: request.get_json()["sliders"] dictionary
     :param bot_type: BotType.HELPDESK_BOT or BotType.ASKER_BOT
