@@ -22,43 +22,35 @@ LIMIT_EXCEEDED_CODE = 429
 def index():
     return render_template("index.html")
 
-@app.route("/welcome", methods=["POST"])
-def welcome():
-    data = request.get_json()
-    print(data, "successfully")
-    payload = {
-        "text": "",
-        "sliders": {
-
-        },
-        "required_question_index": 1
-    }
-    question = requests.post(ASKER_QUESTION_URL, payload=payload).json()
-    print(question, "successfully")
-    return jsonify({"response": 0})
-
-
 @app.route("/send-message", methods=["POST"])
 def send_message_to_api():
     chat_data = request.get_json()
     user_input = chat_data["chat"]["message"]
     slider_data = chat_data["sliders"]
+    sliders = {
+        "anger_level": int(slider_data[0]["sliderValue"]),
+        "misspelling_level": int(slider_data[1]["sliderValue"]),
+        "anxiety_level": int(slider_data[2]["sliderValue"]),
+        "extensiveness_level": int(slider_data[3]["sliderValue"])
+    }
     user_id = 228228
     if user_input == "/clear":
         response = clear_memory(user_id=user_id)
     else:
         send_message_to_processing(text=user_input, user_id=user_id)
         sleep(0.1)
-        response = receive_answer(user_id, int(slider_data[1]["sliderValue"]), int(slider_data[0]["sliderValue"]))
+        response = receive_answer(user_id, sliders)
     answer_text = response.get("text")
     return jsonify({'response': answer_text, "sliders": slider_data, "status_code": 200})
+
 
 @app.route("/manual-slider-update", methods=["POST"])
 def manual_slider_update():
     data = request.get_json()
     value = data.get("sliderValue")
-    id = data.get("sliderID")
-    return {"slider_id": id, "slider_value": value, "status_code": 200}
+    id_ = data.get("sliderID")
+    return {"slider_id": id_, "slider_value": value, "status_code": 200}
+
 
 @app.route("/process-sliders", methods=["POST"])
 def process_sliders():
@@ -66,6 +58,7 @@ def process_sliders():
     print(sliders, "successfully")
     response_data = {"message": "OK"}
     return jsonify({"sliders_data": sliders, "status_code": 200, "response": response_data})
+
 
 def send_message_to_processing(text: str, user_id: int) -> None:
     payload = {
@@ -84,9 +77,8 @@ def send_message_to_processing(text: str, user_id: int) -> None:
         logger.debug(f"Failed to add message <{text}>")
 
 
-def receive_answer(user_id: int, anger_level: int, misspelling_level: int) -> dict:
+def receive_answer(user_id: int, sliders: [str, int]) -> dict:
     while True:
-        sliders = {"anger_level": anger_level, "misspelling_level": misspelling_level}
         response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "sliders": sliders})
         wait_btw_retries_seconds = 1
         sleep(wait_btw_retries_seconds)
