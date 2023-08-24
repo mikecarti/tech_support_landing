@@ -33,7 +33,7 @@ def welcome():
         },
         "required_question_index": 1
     }
-    question = requests.post(ASKER_QUESTION_URL, payload=payload).json()
+    question = requests.post(ASKER_QUESTION_URL, json=payload).json()
     print(question, "successfully")
     return jsonify({"response": 0})
 
