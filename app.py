@@ -9,9 +9,11 @@ app = Flask(__name__)
 
 BASE_URL = "http://127.0.0.1:8000"
 LOCAL_URL = "http://127.0.0.1:5000"
+ASKER_URL = "http://127.0.0.1:8001"
 ADD_MESSAGE_URL = f"{BASE_URL}/add_message"
 ANSWER_MESSAGE_URL = f"{BASE_URL}/answer_message"
 CLEAR_MEMORY_URL = f"{BASE_URL}/clear_memory/" + "{user_id}"
+ASKER_QUESTION_URL = f"{ASKER_URL}/get_question"
 
 LIMIT_EXCEEDED_CODE = 429
 
@@ -19,6 +21,22 @@ LIMIT_EXCEEDED_CODE = 429
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/welcome", methods=["POST"])
+def welcome():
+    data = request.get_json()
+    print(data, "successfully")
+    payload = {
+        "text": "",
+        "sliders": {
+
+        },
+        "required_question_index": 1
+    }
+    question = requests.post(ASKER_QUESTION_URL, payload=payload).json()
+    print(question, "successfully")
+    return jsonify({"response": 0})
+
 
 @app.route("/send-message", methods=["POST"])
 def send_message_to_api():

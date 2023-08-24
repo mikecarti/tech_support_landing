@@ -1,7 +1,10 @@
-import { drawMessage, scrollToBottom} from "./chat_functionality.js";
+import { drawMessage, scrollToBottom, } from "./chat_functionality.js";
+import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
+import { sendMessageAndGetResponse } from "./chat_functionality.js";
 
 const debugButton = document.getElementById("debug-button");
 const timeout = document.getElementById("timeout");
+const welcome_sliders = document.querySelectorAll("input[type='range']");
 
 const fake_user_messages = [
     "Какой сегодня день?",
@@ -48,3 +51,32 @@ async function welcome(timeout) {
 debugButton.addEventListener("click", async () => {
   await welcome(Number(timeout.value.trim()));
 });
+
+function welcome_chat(){
+  for (let i = 0; i < 4; i++) {
+    var sliders = nodeSlidersToJSONSliders(welcome_sliders);
+    var data  = {
+      sliders: sliders,
+      required_question_index: i
+    }
+    fetch("/welcome", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        data
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      drawMessage('user', data.response);
+      scrollToBottom();
+      sendMessageAndGetResponse(data.response, welcome_sliders, "/send-message")
+  })
+  }
+}
+
+
+welcome_chat();
