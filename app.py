@@ -1,3 +1,4 @@
+from enum import Enum
 from time import sleep
 
 import requests
@@ -6,6 +7,12 @@ from datetime import datetime
 from loguru import logger
 
 app = Flask(__name__)
+
+
+class BotType(Enum):
+    HELPDESK_BOT = 1
+    ASKER_BOT = 2
+
 
 BASE_URL = "http://127.0.0.1:8000"
 LOCAL_URL = "http://127.0.0.1:5000"
@@ -22,6 +29,7 @@ LIMIT_EXCEEDED_CODE = 429
 def index():
     return render_template("index.html")
 
+
 @app.route("/welcome", methods=["POST"])
 def welcome():
     data = request.get_json()
@@ -37,17 +45,13 @@ def welcome():
     print(question, "successfully")
     return jsonify({"response": 0})
 
+
 @app.route("/send-message", methods=["POST"])
 def send_message_to_api():
     chat_data = request.get_json()
     user_input = chat_data["chat"]["message"]
-    slider_data = chat_data["sliders"]
-    sliders = {
-        "anger_level": int(slider_data[0]["sliderValue"]),
-        "misspelling_level": int(slider_data[1]["sliderValue"]),
-        "anxiety_level": int(slider_data[2]["sliderValue"]),
-        "extensiveness_level": int(slider_data[3]["sliderValue"])
-    }
+    sliders = get_sliders(slider_data=chat_data["sliders"], bot_type=BotType.HELPDESK_BOT)
+
     user_id = 228228
     if user_input == "/clear":
         response = clear_memory(user_id=user_id)
@@ -56,7 +60,30 @@ def send_message_to_api():
         sleep(0.1)
         response = receive_answer(user_id, sliders)
     answer_text = response.get("text")
-    return jsonify({'response': answer_text, "sliders": slider_data, "status_code": 200})
+    return jsonify({'response': answer_text, "sliders": sliders, "status_code": 200})
+
+
+def get_sliders(slider_data: dict, bot_type: BotType) -> dict[str, int]:
+    """
+    :param slider_data: request.get_json()["sliders"] dictionary
+    :param bot_type: BotType.HELPDESK_BOT or BotType.ASKER_BOT
+    :return:
+    """
+
+    if bot_type == BotType.ASKER_BOT:
+        # cur_slider_data = slider_data["asker"]
+        cur_slider_data = slider_data
+        levels = ["anger_level", "misspelling_level", "anxiety_level", "extensiveness_level"]
+    elif bot_type == BotType.HELPDESK_BOT:
+        # cur_slider_data = slider_data["helpdesk"]
+        cur_slider_data = slider_data
+        levels = ["anger_level", "misspelling_level", "anxiety_level", "extensiveness_level"]
+    else:
+        raise ValueError(f"No such bot type: {bot_type}")
+
+    get_value = lambda data, i: int(data[i]["sliderValue"])
+    return {lvl: get_value(cur_slider_data, i) for (i, lvl) in enumerate(levels)}
+
 
 def send_message_to_processing(text: str, user_id: int) -> None:
     payload = {
