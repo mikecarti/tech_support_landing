@@ -22,6 +22,21 @@ LIMIT_EXCEEDED_CODE = 429
 def index():
     return render_template("index.html")
 
+@app.route("/welcome", methods=["POST"])
+def welcome():
+    data = request.get_json()
+    print(data, "successfully")
+    payload = {
+        "text": "",
+        "sliders": {
+
+        },
+        "required_question_index": 1
+    }
+    question = requests.post(ASKER_QUESTION_URL, payload=payload).json()
+    print(question, "successfully")
+    return jsonify({"response": 0})
+
 @app.route("/send-message", methods=["POST"])
 def send_message_to_api():
     chat_data = request.get_json()
@@ -42,23 +57,6 @@ def send_message_to_api():
         response = receive_answer(user_id, sliders)
     answer_text = response.get("text")
     return jsonify({'response': answer_text, "sliders": slider_data, "status_code": 200})
-
-
-@app.route("/manual-slider-update", methods=["POST"])
-def manual_slider_update():
-    data = request.get_json()
-    value = data.get("sliderValue")
-    id_ = data.get("sliderID")
-    return {"slider_id": id_, "slider_value": value, "status_code": 200}
-
-
-@app.route("/process-sliders", methods=["POST"])
-def process_sliders():
-    sliders = request.args
-    print(sliders, "successfully")
-    response_data = {"message": "OK"}
-    return jsonify({"sliders_data": sliders, "status_code": 200, "response": response_data})
-
 
 def send_message_to_processing(text: str, user_id: int) -> None:
     payload = {
