@@ -78,14 +78,5 @@ async function welcome_chat(){
   }
 }
 
-// chat_container.style.bottom = chat_container.style.bottom === "0px" ? "-400px" : "0px";
-/*
-document.addEventListener("DOMContentLoaded", function() {
-  const chat_container = document.getElementById("chat-popup");
-  setTimeout(() => {
-    chat_container.style.bottom = "0px";
-  }, 1000);
-});
-*/
 chat_container.style.bottom = "0px"
 welcome_chat();

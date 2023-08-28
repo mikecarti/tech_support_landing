@@ -24,7 +24,6 @@
     background-color: rgba(212, 212, 212, 0.9); /* Цвет фона с прозрачностью */
     backdrop-filter: blur(10px);
     transition: bottom 0.99s ease-in-out;
-    /*transition: bottom 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55);*/
 }
 
 .close-button-container {
