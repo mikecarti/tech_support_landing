@@ -14,12 +14,12 @@ class BotType(Enum):
     ASKER_BOT = 2
 
 
-BASE_URL = "http://127.0.0.1:8000"
 LOCAL_URL = "http://127.0.0.1:5000"
+HELPDESK_URL = "http://helpdesk_container:8000"
 ASKER_URL = "http://127.0.0.1:8001"
-ADD_MESSAGE_URL = f"{BASE_URL}/add_message"
-ANSWER_MESSAGE_URL = f"{BASE_URL}/answer_message"
-CLEAR_MEMORY_URL = f"{BASE_URL}/clear_memory/" + "{user_id}"
+ADD_MESSAGE_URL = f"{HELPDESK_URL}/add_message"
+ANSWER_MESSAGE_URL = f"{HELPDESK_URL}/answer_message"
+CLEAR_MEMORY_URL = f"{HELPDESK_URL}/clear_memory/" + "{user_id}"
 ASKER_QUESTION_URL = f"{ASKER_URL}/get_question"
 
 LIMIT_EXCEEDED_CODE = 429
@@ -123,6 +123,9 @@ def clear_memory(user_id):
     response = requests.post(url)
     return response.json()
 
+def main():
+    app.run(debug=True, port=5000, host='0.0.0.0')
+    # app.run(debug=True)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    main()
