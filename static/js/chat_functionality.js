@@ -1,4 +1,5 @@
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
+import { sleep } from "./welcome.js";
 const chatMessages = document.getElementById('chat-messages');
 
 export function getLlmAnswer(message, endpoint) {
@@ -37,21 +38,20 @@ function combineMessageAndSliders(message, nodeSliders) {
     return combinedData;
 }
 
-export function sendMessageAndGetResponse(message, nodeSliders, endpoint) {
+export async function sendMessageAndGetResponse(message, nodeSliders, endpoint) {
     if (message!=='') {
-        console.log(message);
+        await sleep(1500);
         drawMessage('user', message);
         scrollToBottom();
         const combinedData = combineMessageAndSliders(message, nodeSliders);
-        console.log(combinedData);
-        fetch(endpoint, {
+        await fetch(endpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(combinedData)
         })
-        .then(response => response.json())
+        .then(async response => await response.json())
         .then(data => {
             console.log(data);
             drawMessage('llm', data.response);

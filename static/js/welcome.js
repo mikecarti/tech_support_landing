@@ -31,8 +31,8 @@ const bot_messages = [
     "Программировать? Ты вообще в жизни что-то делаешь?"
   ];
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+export async function sleep(ms) {
+    return new Promise(async resolve => await setTimeout(resolve, ms));
 }
 
 async function welcome(timeout) {
@@ -52,14 +52,14 @@ debugButton.addEventListener("click", async () => {
   await welcome(Number(timeout.value.trim()));
 });
 
-function welcome_chat(){
+async function welcome_chat(){
   for (let i = 0; i < 4; i++) {
     var sliders = nodeSlidersToJSONSliders(welcome_sliders);
     var data  = {
       sliders: sliders,
       required_question_index: i
     }
-    fetch("/welcome", {
+    await fetch("/welcome", {
       method: "POST",
       headers: {
           "Content-Type": "application/json"
@@ -68,14 +68,13 @@ function welcome_chat(){
         data
       })
     })
-    .then(response => response.json())
-    .then(data => {
+    .then(async response => await response.json())
+    .then(async data => {
       console.log(data);
-      console.log(data.response);
-      sendMessageAndGetResponse(data.response, welcome_sliders, "/send-message")
+      // sleep(1500);
+      await sendMessageAndGetResponse(data.response, welcome_sliders, "/send-message");
   })
   }
 }
-
 
 welcome_chat();

@@ -62,7 +62,7 @@ export function sendSlidersDataToEndpoint(sliders, endpoint) {
 sliders.forEach((slider) => {
     slider.addEventListener("input", () => {
         handleSliderChange(slider.id, slider.value);
-        sendSliderDataToBackend(slider.id, slider.value);
+        // sendSliderDataToBackend(slider.id, slider.value);
     });
 });
 
