@@ -5,6 +5,7 @@ import { sendMessageAndGetResponse } from "./chat_functionality.js";
 const debugButton = document.getElementById("debug-button");
 const timeout = document.getElementById("timeout");
 const welcome_sliders = document.querySelectorAll("input[type='range']");
+const chat_container = document.getElementById("chat-popup");
 
 const fake_user_messages = [
     "Какой сегодня день?",
@@ -77,4 +78,14 @@ async function welcome_chat(){
   }
 }
 
+// chat_container.style.bottom = chat_container.style.bottom === "0px" ? "-400px" : "0px";
+/*
+document.addEventListener("DOMContentLoaded", function() {
+  const chat_container = document.getElementById("chat-popup");
+  setTimeout(() => {
+    chat_container.style.bottom = "0px";
+  }, 1000);
+});
+*/
+chat_container.style.bottom = "0px"
 welcome_chat();
