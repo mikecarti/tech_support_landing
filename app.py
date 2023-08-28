@@ -34,7 +34,6 @@ def index():
 def welcome():
     data = request.get_json()
     sliders = get_sliders(slider_data=data["data"]["sliders"], bot_type=BotType.ASKER_BOT)
-    print(data, "successfully")
     payload = {
         "text": "",
         "sliders": sliders,
@@ -99,9 +98,11 @@ def send_message_to_processing(text: str, user_id: int) -> None:
         logger.debug(f"Failed to add message <{text}>")
 
 
-def receive_answer(user_id: int, sliders: [str, int]) -> dict:
+def receive_answer(user_id: int, sliders: dict[str, int]) -> dict:
+    print("\n\n",sliders,"\n\n")
     while True:
         response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "sliders": sliders})
+        print("\n\n",response.json(),"\n\n")
         wait_btw_retries_seconds = 1
         sleep(wait_btw_retries_seconds)
         logger.warning(f"Anti-Spam limit exceeded. Retrying in {wait_btw_retries_seconds} seconds...")
