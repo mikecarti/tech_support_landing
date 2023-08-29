@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Specify the command to run the landing service
-CMD [ "python3.10", "main.py" ]
+CMD [ "gunicorn", "--worker-tmp-dir", "/dev/shm", "app:app" ]
