@@ -1,0 +1,67 @@
+
+.giga-chat-container {
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.giga-chat {
+    /*position: fixed;*/
+    position: relative;
+    /* border: 2px solid black;*/
+    width: 0px;
+    height: 0px;
+    background-color: rgba(212, 212, 212, 0.9);
+    border-radius: 0px 15px 0px 0px;
+    transition: 1.5s ease-in-out;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.giga-chat.active {
+    width: 500px;
+    height: 500px;
+}
+
+.giga-chat-close-button-container {
+    text-align: right;
+    padding: 5px 5px;
+}
+
+.giga-chat-close-button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: 32px; /* Увеличьте размер икони */
+    line-height: 1;   
+}
+
+.giga-chat-separator {
+    z-index: 1003;
+    height: 3px;
+    background-color: #ccc;
+    position: relative;
+    margin: 0px 0; /* Расстояние от разделительной полосы до сообщений */
+    box-shadow: 0px 2px 2px rgba(212, 212, 212, 0.9);  
+}
+
+.giga-chat-messages {
+    z-index: 1002;
+    position: relative;
+    padding: 10px;
+    height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.giga-chat-input {
+    display: flex;
+    padding: 10px;
+}
+
+.giga-chat-messages {
+    display: flex;
+    flex-direction: column; 
+}

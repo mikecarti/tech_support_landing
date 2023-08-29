@@ -38,10 +38,10 @@ function combineMessageAndSliders(message, nodeSliders) {
     return combinedData;
 }
 
-export async function sendMessageAndGetResponse(message, nodeSliders, endpoint) {
+export async function sendMessageAndGetResponse(message, chat_messages_container, nodeSliders, endpoint) {
     if (message!=='') {
         await sleep(1500);
-        drawMessage('user', message);
+        drawMessage('user', message, chat_messages_container);
         scrollToBottom();
         const combinedData = combineMessageAndSliders(message, nodeSliders);
         await fetch(endpoint, {
@@ -54,14 +54,14 @@ export async function sendMessageAndGetResponse(message, nodeSliders, endpoint) 
         .then(async response => await response.json())
         .then(data => {
             console.log(data);
-            drawMessage('llm', data.response);
+            drawMessage('llm', data.response, chat_messages_container);
             scrollToBottom();
         })
         .catch(error => console.log("Ошибка: ", error));
     }
 }
 
-export function drawMessage(sender, text) {
+export function drawMessage(sender, text, chat_messages_container) {
     if (text !== null) {
         const messageElement = document.createElement('div');
         const messageContainer = document.createElement('div');
@@ -69,7 +69,7 @@ export function drawMessage(sender, text) {
         messageElement.className = `message-${sender}`;
         messageElement.textContent = text;
         messageContainer.appendChild(messageElement);
-        chatMessages.appendChild(messageContainer);
+        chat_messages_container.appendChild(messageContainer);
     }
 }
 

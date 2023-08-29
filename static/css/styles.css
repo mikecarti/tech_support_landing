@@ -11,32 +11,6 @@
     border-radius: 15px;
 }
 
-.giga-chat-container {
-    height: 600px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-.giga-chat {
-    /*position: fixed;*/
-    position: relative;
-    /* border: 2px solid black;*/
-    width: 0px;
-    height: 0px;
-    background-color: antiquewhite;
-    border-radius: 25px;
-    transition: 1.5s ease-in-out;
-}
-
-.giga-chat.active {
-    width: 500px;
-    height: 500px;
- 
-    
-}
-
-
 .chat-popup {
     z-index: 1001;
     display: block;

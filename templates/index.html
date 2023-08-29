@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>NeuroSquare playground</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/giga-styles.css') }}">
 </head>
 <body>
     <h1>Ask</h1>
@@ -20,12 +21,29 @@
     <a href="#contacts">Перейти к этому месту</a>
     <a href="#something">Перейти к этому месту</a>
     <button id="open-popup" class="open-button">Открыть чат</button>
-    <div class="giga-chat-container">
+    <div class="giga-chat-container" id="giga-chat-container">
         <div class="giga-chat" id="giga-chat">
-
+            <div class="giga-chat-close-button-container">
+                <button class="giga-chat-close-button" id="giga-chat-close-button">✖</button>
+            </div>
+            <div class="giga-chat-separator"></div>
+            <div class="giga-chat-messages" id="giga-chat-messages">
+                <!-- Здесь будут отображаться сообщения -->
+            </div>
+            <div class="giga-chat-input">
+                <input type="text" id="giga-chat-message-input" placeholder="Введите сообщение...">
+                <button id="giga-chat-send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Отправить</button>
+            </div>
+            <div class="sliders">
+                <input type="range" min="0" max="3" value="0" step="1" id="anger-level">
+                <input type="range" min="0" max="3" value="0" step="1" id="misspelling_level">
+                <input type="range" min="0" max="3" value="0" step="1" id="bot-grammar-nazi">
+                <input type="range" min="0" max="3" value="0" step="1" id="bot-rage">
+            </div>
         </div>
         <div class="animation-container">
-            <img src="{{ url_for('static', filename='images/hammer.gif') }}" alt="Hammer GIF"/>
+            <!-- <img id="hammer-gif" src="{{ url_for('static', filename='images/hammer.gif') }}" alt="Hammer GIF"/> -->
+            
         </div>
     </div>
     <div class="chat-popup" id="chat-popup">
@@ -57,6 +75,7 @@
     <script type="module" src="{{ url_for('static', filename='js/welcome.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/chat_event_listeners.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/chat_sliders.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/giga_chat_event_listeners.js') }}"></script>
     <div class="information">
         <h2 id="about">О нас</h2>
             <p>

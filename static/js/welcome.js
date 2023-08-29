@@ -7,6 +7,7 @@ const timeout = document.getElementById("timeout");
 const welcome_sliders = document.querySelectorAll("input[type='range']");
 const chat_container = document.getElementById("chat-popup");
 const giga_chat = document.getElementById("giga-chat");
+const welcomeMessageContainer = document.getElementById("chat-messages")
 
 const fake_user_messages = [
     "Какой сегодня день?",
@@ -73,24 +74,25 @@ async function welcome_chat(){
     .then(async response => await response.json())
     .then(async data => {
       console.log(data);
-      // sleep(1500);
-      await sendMessageAndGetResponse(data.response, welcome_sliders, "/send-message");
+      await sendMessageAndGetResponse(data.response, welcomeMessageContainer, welcome_sliders, "/send-message");
   })
   }
 }
 
-//giga_chat.style.width = "500px";
-//giga_chat.style.height = "500px";
-
 window.addEventListener("DOMContentLoaded", async () => {
+  const gif = document.createElement("img");
   chat_container.style.bottom = "0px";
   await welcome_chat();
   giga_chat.classList.toggle("active")
-  await sleep(2000);
+  await fetch("/static/images/hammer.gif")
+  .then(async response => await response.blob())
+  .then(blob => {
+    gif.src = URL.createObjectURL(blob);
+    document.getElementById("giga-chat-container").appendChild(gif);
+  });
+  
+  await sleep(1300)
   chat_container.style.bottom = "-600px";
+  await sleep(500)
+  gif.style.display = "none"
 });
-/*
-chat_container.style.bottom = "0px";
-await welcome_chat();
-giga_chat.classList.toggle("active")
-*/

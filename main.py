@@ -17,10 +17,10 @@ class BotType(Enum):
 
 
 LOCAL_URL = "http://127.0.0.1:5000"
-HELPDESK_URL = "http://helpdesk_container:8000"
-ASKER_URL = "http://asker_container:8001"
-# HELPDESK_URL = "http://127.0.0.1:8000"
-# ASKER_URL = "http://127.0.0.1:8001"
+# HELPDESK_URL = "http://helpdesk_container:8000"
+# ASKER_URL = "http://asker_container:8001"
+HELPDESK_URL = "http://127.0.0.1:8000"
+ASKER_URL = "http://127.0.0.1:8001"
 ADD_MESSAGE_URL = f"{HELPDESK_URL}/add_message"
 ANSWER_MESSAGE_URL = f"{HELPDESK_URL}/answer_message"
 CLEAR_MEMORY_URL = f"{HELPDESK_URL}/clear_memory/" + "{user_id}"
@@ -33,10 +33,10 @@ LIMIT_EXCEEDED_CODE = 429
 def index():
     return render_template("index.html")
 
-@app.route("/img/<filename>")
+@app.route("/images/<filename>")
 def get_animation(filename):
     root_dir = Path.cwd().parent
-    return send_from_directory((root_dir / "templates" / "img" / filename), filename)
+    return send_from_directory((root_dir / "static" / "images" / filename), filename)
 
 @app.route("/welcome", methods=["POST"])
 def welcome():
