@@ -6,6 +6,7 @@ const debugButton = document.getElementById("debug-button");
 const timeout = document.getElementById("timeout");
 const welcome_sliders = document.querySelectorAll("input[type='range']");
 const chat_container = document.getElementById("chat-popup");
+const giga_chat = document.getElementById("giga-chat");
 
 const fake_user_messages = [
     "Какой сегодня день?",
@@ -78,5 +79,18 @@ async function welcome_chat(){
   }
 }
 
-chat_container.style.bottom = "0px"
-welcome_chat();
+//giga_chat.style.width = "500px";
+//giga_chat.style.height = "500px";
+
+window.addEventListener("DOMContentLoaded", async () => {
+  chat_container.style.bottom = "0px";
+  await welcome_chat();
+  giga_chat.classList.toggle("active")
+  await sleep(2000);
+  chat_container.style.bottom = "-600px";
+});
+/*
+chat_container.style.bottom = "0px";
+await welcome_chat();
+giga_chat.classList.toggle("active")
+*/
