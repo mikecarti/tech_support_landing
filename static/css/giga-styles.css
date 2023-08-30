@@ -6,44 +6,22 @@
     display: flex;
 }
 
-.giga-chat-overlay {
-    border-radius: 50px;
-    z-index: 0;
-    position: absolute;
-    width: 450px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(247, 0, 255, 0.8), rgba(0, 0, 0, 0));
-    filter: blur(50px);
-}
-
 .giga-chat {
     /*position: fixed;*/
     position: relative;
-    z-index: 1;
-    
     /* border: 2px solid black;*/
     width: 0px;
     height: 0px;
     background-color: rgba(212, 212, 212, 0.9);
-    border-radius: 50px;
+    border-radius: 0px 15px 0px 0px;
     transition: 1.5s ease-in-out;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .giga-chat.active {
-    width: 400px;
-    height: 600px;
-}
-
-.giga-chat-message-input {
-    border-radius: 25px;
-}
-
-.giga-chat-send-button {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
+    width: 500px;
+    height: 500px;
 }
 
 .giga-chat-close-button-container {
@@ -62,11 +40,11 @@
 
 .giga-chat-separator {
     z-index: 1003;
-    height: 2px;
-    background-color: #000000;
+    height: 3px;
+    background-color: #ccc;
     position: relative;
     margin: 0px 0; /* Расстояние от разделительной полосы до сообщений */
-    /* box-shadow: 0px 2px 2px rgba(212, 212, 212, 0.9);  */
+    box-shadow: 0px 2px 2px rgba(212, 212, 212, 0.9);  
 }
 
 .giga-chat-messages {
@@ -76,7 +54,6 @@
     height: 300px;
     max-height: 300px;
     overflow-y: auto;
-    background-color: white;
 }
 
 .giga-chat-input {

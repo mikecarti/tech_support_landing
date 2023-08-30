@@ -79,13 +79,11 @@ async function welcome_chat(){
   }
 }
 
-giga_chat.classList.toggle("active")
-
 window.addEventListener("DOMContentLoaded", async () => {
   const gif = document.createElement("img");
   chat_container.style.bottom = "0px";
   await welcome_chat();
-  
+  giga_chat.classList.toggle("active")
   await fetch("/static/images/hammer.gif")
   .then(async response => await response.blob())
   .then(blob => {
