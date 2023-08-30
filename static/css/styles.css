@@ -67,7 +67,7 @@ input[type="text"] {
     padding: 5px;
     border: 1px solid #ccc;
 }
-
+/*
 button {
     padding: 5px 10px;
     background-color: #007bff;
@@ -75,7 +75,7 @@ button {
     border: none;
     cursor: pointer;
 }
-
+*/
 .chat-messages {
     display: flex;
     flex-direction: column;
