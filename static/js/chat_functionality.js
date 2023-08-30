@@ -40,7 +40,6 @@ function combineMessageAndSliders(message, nodeSliders) {
 
 export async function sendMessageAndGetResponse(message, chat_messages_container, nodeSliders, endpoint) {
     if (message!=='') {
-        // await sleep(1500);
         drawMessage('user', message, chat_messages_container);
         scrollToBottom();
         const combinedData = combineMessageAndSliders(message, nodeSliders);
