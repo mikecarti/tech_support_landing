@@ -90,7 +90,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   .then(async response => await response.blob())
   .then(blob => {
     gif.src = URL.createObjectURL(blob);
-    document.getElementById("giga-chat-container").appendChild(gif);
+    document.getElementById("sliders").appendChild(gif);
   });
   
   await sleep(1300)

@@ -10,7 +10,12 @@
 <body>
     <div class="upper-side" id="upper-side">
         <div class="main-logo" id="main-logo">
-
+            <div class="square-container">
+                <div class="square" id="square"></div>
+            </div>
+            <div class="naming-container">
+                <div class="naming" id="naming">Нейра скваре</div>
+            </div>
         </div>
         <div class="sections" id="sections">
             <button class="products" id="products">Products</button>
@@ -25,30 +30,34 @@
     <a href="#contacts">Перейти к этому месту</a>
     <a href="#something">Перейти к этому месту</a>
     <button id="open-popup" class="open-button">Открыть чат</button>
-    <div class="giga-chat-container" id="giga-chat-container">
-        <div class="giga-chat" id="giga-chat">
-            <div class="giga-chat-close-button-container">
-                <button class="giga-chat-close-button" id="giga-chat-close-button">✖</button>
-            </div>
-            <div class="giga-chat-separator"></div>
-            <div class="giga-chat-messages" id="giga-chat-messages">
-                <!-- Здесь будут отображаться сообщения -->
-            </div>
-            <div class="giga-chat-input">
-                <input type="text" class="giga-chat-message-input" id="giga-chat-message-input" placeholder="Введите сообщение...">
-                <button class="giga-chat-send-button" id="giga-chat-send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Отправить</button>
-            </div>
-            <div class="sliders">
-                <input type="range" min="0" max="3" value="0" step="1" id="anger-level">
-                <input type="range" min="0" max="3" value="0" step="1" id="misspelling_level">
-                <input type="range" min="0" max="3" value="0" step="1" id="bot-grammar-nazi">
-                <input type="range" min="0" max="3" value="0" step="1" id="bot-rage">
-            </div>
+    <div class="main-container">
+        <div class="about-us" id="about-us">
+            <p class="our-text">О нас чё то</p>
+            <p class="our-text">Ещё чё нить</p>
+            <p class="our-text">И тут ещё чёто</p>
         </div>
-        <div class="giga-chat-overlay"></div>
-        <div class="animation-container">
-            <!-- <img id="hammer-gif" src="{{ url_for('static', filename='images/hammer.gif') }}" alt="Hammer GIF"/> -->
-            
+        <div class="giga-chat-container" id="giga-chat-container">
+            <div class="giga-chat" id="giga-chat">
+                <div class="giga-chat-close-button-container">
+                    <button class="giga-chat-close-button" id="giga-chat-close-button">✖</button>
+                </div>
+                <div class="giga-chat-separator"></div>
+                <div class="giga-chat-messages" id="giga-chat-messages">
+                    <!-- Здесь будут отображаться сообщения -->
+                </div>
+                <div class="giga-chat-input">
+                    <input type="text" class="giga-chat-message-input" id="giga-chat-message-input" placeholder="Введите сообщение...">
+                    <button class="giga-chat-send-button" id="giga-chat-send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Отправить</button>
+                </div>
+                
+            </div>
+            <div class="giga-chat-overlay"></div>
+        </div>
+        <div class="sliders" id="sliders">
+            <input type="range" min="0" max="3" value="0" step="1" id="anger-level">
+            <input type="range" min="0" max="3" value="0" step="1" id="misspelling_level">
+            <input type="range" min="0" max="3" value="0" step="1" id="bot-grammar-nazi">
+            <input type="range" min="0" max="3" value="0" step="1" id="bot-rage">
         </div>
     </div>
     <div class="chat-popup" id="chat-popup">

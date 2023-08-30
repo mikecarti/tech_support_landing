@@ -5,6 +5,29 @@ body {
     font-family: 'Roboto', sans-serif;*/
 }
 
+.main-container {
+    display: flex;
+}
+
+.about-us {
+    width: 33.33%;
+    overflow: hidden;
+}
+
+.our-text {
+    color: white;
+    animation: slide 5s infinite alternate;
+}
+
+@keyframes sldie {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25%, 75% {
+        transform: translateY(-100%);
+    }
+}
+
 .upper-side {
     display: flex;
     
@@ -34,4 +57,38 @@ body {
     font-family: 'Roboto', sans-serif;
     margin-left: auto;
     margin-right: 1%
+}
+
+.main-logo {
+    width: 30%;
+    height: 100%;
+    display: flex;
+}
+
+.square-container {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square {
+    margin left: 20px;
+    width: 30%;
+    aspect-ratio: 1/1;
+    background-color: white;
+    transform: rotate(45deg)
+}
+
+.naming-container {
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+.naming {
+    color: white;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 36pt;
 }
