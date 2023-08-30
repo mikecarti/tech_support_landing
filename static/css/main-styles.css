@@ -71,7 +71,7 @@ body {
 }
 
 .square {
-    margin left: 20px;
+    margin-left: 20px;
     width: 30%;
     aspect-ratio: 1/1;
     background-color: white;
