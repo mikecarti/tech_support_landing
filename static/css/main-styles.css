@@ -13,12 +13,6 @@ body {
     display: flex;
 }
 
-.about-us {
-    display: flex;
-    width: 33.33%;
-    overflow: hidden;
-}
-
 .upper-side {
     display: flex;
     align-items: center;
