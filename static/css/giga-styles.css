@@ -34,9 +34,47 @@
 }
 
 .giga-chat-close-button-container {
-    text-align: right;
+    justify-content: center;
+    align-items: center;
     padding: 5px 5px;
     height: 7%;
+}
+
+.giga-chat-logo {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.giga-chat-square-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.giga-chat-square {
+    position: relative;
+    width: 23px;
+    aspect-ratio: 1/1;
+    background-color:#000000;
+    transform: rotate(45deg);
+}
+
+.giga-chat-naming-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.giga-chat-naming {
+    color: rgb(0, 0, 0);
+    white-space: pre-wrap;
+    font-size: 30px;
+    font-family: 'Days One', sans-serif;
+    line-height: 28.5px;
 }
 
 .giga-chat-close-button {
@@ -90,7 +128,6 @@
     border-radius: 0px 10px 10px 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
-
 
 .giga-chat-input {
     display: flex;
