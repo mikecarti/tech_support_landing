@@ -1,4 +1,11 @@
-.slide {
+.slide-show {
     color: white;
     font-size: 50pt;
+    display: flex;
+    overflow: hidden;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
 }
