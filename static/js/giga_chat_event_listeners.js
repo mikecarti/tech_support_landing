@@ -25,7 +25,7 @@ sliders.forEach((slider) => {
     slider.addEventListener("input", () => {
         const value = slider.value;
         const fillPercentage = (value - slider.min) / (slider.max - slider.min) * 100;
-        const gradient = `linear-gradient(to right, #007bff 0%, #007bff ${fillPercentage}%, #000000 ${fillPercentage}%, #000000 100%)`
+        const gradient = `linear-gradient(to right, #7F60F9 0%, #7F60F9 ${fillPercentage}%, #ffffff ${fillPercentage}%, #ffffff 100%)`
         slider.style.background = gradient;
     });
 });
