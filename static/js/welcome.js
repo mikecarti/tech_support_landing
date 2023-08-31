@@ -1,9 +1,6 @@
-import { drawMessage, scrollToBottom, } from "./chat_functionality.js";
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
 import { sendMessageAndGetResponse } from "./chat_functionality.js";
 
-const debugButton = document.getElementById("debug-button");
-const timeout = document.getElementById("timeout");
 const welcome_sliders = document.querySelectorAll("input[type='range']");
 const chat_container = document.getElementById("chat-popup");
 const giga_chat = document.getElementById("giga-chat");
@@ -49,7 +46,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   .then(async response => await response.blob())
   .then(blob => {
     gif.src = URL.createObjectURL(blob);
-    //gif
     document.getElementById("sliders").appendChild(gif);
   });
   
