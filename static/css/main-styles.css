@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Days One Cyrillic";
+    src: url("fonts/DaysOne-Regular.ttf") format("truetype");
+}
+
 body {
     margin: 0;
     background-color: #000;
@@ -26,11 +31,16 @@ body {
 }
 
 .sections button {
+    font-size: 16px;
+    font-family: 'IBM Plex Sans', sans-serif;
     outline: none;
     border: none;
     background-color: transparent;
     color: #fff;
-    font-family: 'Roboto', sans-serif;
+}
+
+.sections .products {
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .trial {
@@ -58,11 +68,23 @@ body {
 }
 
 .square {
+    position: relative;
     margin-left: 20px;
     width: 30%;
     aspect-ratio: 1/1;
     background-color: white;
-    transform: rotate(45deg)
+    background: linear-gradient(to right, #6DDCFF, #7F60F9);
+    transform: rotate(45deg);
+}
+
+.square::after {
+    content: "";
+    position: absolute;
+    top: 12.5%;
+    left: 12.5%;
+    width: 75%;
+    aspect-ratio: 1/1;
+    background-color: rgb(0, 0, 0);
 }
 
 .naming-container {
@@ -73,7 +95,9 @@ body {
 
 .naming {
     color: white;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    font-size: 36pt;
+    white-space: pre-wrap;
+    font-size: 30px;
+    font-family: 'Days One', sans-serif;
+    text-transform: uppercase;
+    line-height: 28.5px;
 }

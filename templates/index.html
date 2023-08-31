@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>NeuroSquare playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Days+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Plus+Jakarta+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/giga-styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main-styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/slide_show.css') }}">
+
 </head>
 <body>
     <div class="upper-side" id="upper-side">
@@ -16,7 +22,7 @@
                 <div class="square" id="square"></div>
             </div>
             <div class="naming-container">
-                <div class="naming" id="naming">Нейра скваре</div>
+                <div class="naming" id="naming">Neuro<br>Square</div>
             </div>
         </div>
         <div class="sections" id="sections">
@@ -50,7 +56,7 @@
                     <!-- Здесь будут отображаться сообщения -->
                 </div>
                 <div class="giga-chat-input">
-                    <input type="text" class="giga-chat-message-input" id="giga-chat-message-input" placeholder="Введите сообщение...">
+                    <input type="text" class="giga-chat-message-input" id="giga-chat-message-input" placeholder="введите запрос">
                     <button class="giga-chat-send-button" id="giga-chat-send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Отправить</button>
                 </div>
                 
