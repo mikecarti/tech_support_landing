@@ -2,11 +2,12 @@ from enum import Enum
 from time import sleep
 
 import requests
-from flask import Flask, render_template, request, jsonify, session, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from datetime import datetime
 from loguru import logger
-import os
 from pathlib import Path
+
+from payload import TowardsFrontendPayload
 
 app = Flask(__name__)
 
@@ -34,10 +35,12 @@ LIMIT_EXCEEDED_CODE = 429
 def index():
     return render_template("index.html")
 
+
 @app.route("/images/<filename>")
 def get_animation(filename):
     root_dir = Path.cwd().parent
     return send_from_directory((root_dir / "static" / "images" / filename), filename)
+
 
 @app.route("/welcome", methods=["POST"])
 def welcome():
@@ -58,13 +61,19 @@ def send_message_to_api():
     user_input = chat_data["chat"]["message"]
     sliders = get_sliders(slider_data=chat_data["sliders"], bot_type=BotType.HELPDESK_BOT)
     user_id = 228228
+
     if user_input == "/clear":
-        response = clear_memory(user_id=user_id)
+        response: TowardsFrontendPayload = clear_memory(user_id)
     else:
-        send_message_to_processing(text=user_input, user_id=user_id)
+        send_message_to_processing(user_input, user_id)
         sleep(0.1)
-        response = receive_answer(user_id, sliders)
-    answer_text = response.get("text")
+        response: TowardsFrontendPayload = receive_answer(user_id, sliders)
+        if status_code_error(response):
+            return jsonify({'status_code': response.get("status_code")})
+
+    answer_text = response.text
+    function_name = response.function
+    function_args = response.args
     return jsonify({'response': answer_text, "sliders": sliders, "status_code": 200})
 
 
@@ -107,11 +116,11 @@ def send_message_to_processing(text: str, user_id: int) -> None:
         logger.debug(f"Failed to add message <{text}>")
 
 
-def receive_answer(user_id: int, sliders: dict[str, int]) -> dict:
-    print("\n\n",sliders,"\n\n")
+def receive_answer(user_id: int, sliders: dict[str, int]) -> TowardsFrontendPayload | dict:
+    print("\n\n", sliders, "\n\n")
     while True:
         response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "sliders": sliders})
-        print("\n\n",response.json(),"\n\n")
+        print("\n\n", response.json(), "\n\n")
         wait_btw_retries_seconds = 1
         sleep(wait_btw_retries_seconds)
         logger.warning(f"Anti-Spam limit exceeded. Retrying in {wait_btw_retries_seconds} seconds...")
@@ -119,22 +128,31 @@ def receive_answer(user_id: int, sliders: dict[str, int]) -> dict:
             break
 
     if response.status_code == 200:
-        answer = response.json().get("text")
-        logger.debug("Answer:", answer)
-        return response.json()
+        payload = TowardsFrontendPayload(**response.json())
+        logger.debug(f"Answer: {payload.text}\nFunction: {payload.function}")
+        return payload
     else:
         logger.debug("Failed to get answer")
         return {"status_code": response.status_code, "detail": response.json().get("detail")}
 
 
-def clear_memory(user_id):
+def clear_memory(user_id) -> TowardsFrontendPayload:
     url = CLEAR_MEMORY_URL.format(user_id=user_id)
-    response = requests.post(url)
-    return response.json()
+    payload = TowardsFrontendPayload(**requests.post(url).json())
+    return payload
+
+
+def status_code_error(response):
+    response_is_error = type(response) == dict
+    if response_is_error:
+        logger.error(response)
+    return response_is_error
+
 
 def main():
     app.run(debug=True, port=80, host='0.0.0.0')
     # app.run(debug=True)
+
 
 if __name__ == "__main__":
     main()
