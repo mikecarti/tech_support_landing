@@ -175,25 +175,14 @@
 }
 
 .giga-chat-send-button img {
-    background-image: url("icons/send.png");
     width: 20px;
     height: 20px;
     display: inline-block;
 }
 
-
 .giga-chat-messages {
     display: flex;
     flex-direction: column; 
-}
-
-.sliders {
-    gap: 10px;
-    width: 33.33%;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
 }
 
 .slider input[type="range"] {

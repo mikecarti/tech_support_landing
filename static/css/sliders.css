@@ -1,0 +1,48 @@
+.sliders {
+    gap: 30px;
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стилизация основного элемента ползунка */
+.sliders input[type="range"] {
+    /* Общие стили */
+    width: 50%;
+    height: 10px;
+    appearance: none; /* Убирает стандартный стиль браузера */
+    background-color: #7F60F9;
+    outline: none;
+    border-radius: 25px;
+  }
+  
+  /* Стилизация ползунка */
+.sliders input[type="range"]::-webkit-slider-thumb {
+    /* Стиль для браузеров, использующих WebKit (Chrome, Safari и др.) */
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    background: #7F60F9;
+    cursor: pointer;
+    border-radius: 25px;
+  }
+  
+.sliders input[type="range"]::-moz-range-thumb {
+    /* Стиль для Firefox */
+    width: 28px;
+    height: 28px;
+    background: #7F60F9;
+    cursor: pointer;
+    border-radius: 25px;
+  }
+  
+.sliders input[type="range"]::-ms-thumb {
+    /* Стиль для Internet Explorer и Edge */
+    width: 28px;
+    height: 28px;
+    background: #7F60F9;
+    cursor: pointer;
+    border-radius: 25px;
+  }
