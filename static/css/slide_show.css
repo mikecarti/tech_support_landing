@@ -3,9 +3,29 @@
     font-size: 50pt;
     display: flex;
     overflow: hidden;
+    flex-wrap: wrap;
 }
 
 .slide {
     width: 100%;
     height: 100%;
+    animation: anim 12s infinite;
+}
+
+@keyframes anim {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-100%);
+    }
+    50% {
+        transform: translateY(-200%);
+    }
+    75% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
