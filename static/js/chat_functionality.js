@@ -38,9 +38,9 @@ function combineMessageAndSliders(message, nodeSliders) {
     return combinedData;
 }
 
-export async function sendMessageAndGetResponse(message, chat_messages_container, nodeSliders, endpoint) {
+export async function sendMessageAndGetResponse(message, chat_messages_container, nodeSliders, endpoint, senders) {
     if (message!=='') {
-        drawMessage('user', message, chat_messages_container);
+        drawMessage(senders[0], message, chat_messages_container);
         scrollToBottom();
         const combinedData = combineMessageAndSliders(message, nodeSliders);
         await fetch(endpoint, {
@@ -53,7 +53,7 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         .then(async response => await response.json())
         .then(data => {
             console.log(data);
-            drawMessage('llm', data.response, chat_messages_container);
+            drawMessage(senders[1], data.response, chat_messages_container);
             scrollToBottom();
         })
         .catch(error => console.log("Ошибка: ", error));

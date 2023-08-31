@@ -8,6 +8,7 @@ const welcome_sliders = document.querySelectorAll("input[type='range']");
 const chat_container = document.getElementById("chat-popup");
 const giga_chat = document.getElementById("giga-chat");
 const welcomeMessageContainer = document.getElementById("chat-messages")
+const senders = ["user", "llm"]
 
 const fake_user_messages = [
     "Какой сегодня день?",
@@ -50,7 +51,6 @@ async function welcome(timeout) {
   }
 }
 
-
 debugButton.addEventListener("click", async () => {
   await welcome(Number(timeout.value.trim()));
 });
@@ -74,7 +74,7 @@ async function welcome_chat(){
     .then(async response => await response.json())
     .then(async data => {
       console.log(data);
-      await sendMessageAndGetResponse(data.response, welcomeMessageContainer, welcome_sliders, "/send-message");
+      await sendMessageAndGetResponse(data.response, welcomeMessageContainer, welcome_sliders, "/send-message", senders);
   })
   }
 }
