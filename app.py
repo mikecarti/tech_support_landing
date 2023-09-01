@@ -19,10 +19,10 @@ class BotType(Enum):
 
 LOCAL_URL = "http://127.0.0.1:5000"
 
-# HELPDESK_URL = "http://helpdesk_container:8000"
-# ASKER_URL = "http://asker_container:8001"
-HELPDESK_URL = "http://127.0.0.1:8000"
-ASKER_URL = "http://127.0.0.1:8001"
+HELPDESK_URL = "http://helpdesk_container:8000"
+ASKER_URL = "http://asker_container:8001"
+# HELPDESK_URL = "http://127.0.0.1:8000"
+# ASKER_URL = "http://127.0.0.1:8001"
 ADD_MESSAGE_URL = f"{HELPDESK_URL}/add_message"
 ANSWER_MESSAGE_URL = f"{HELPDESK_URL}/answer_message"
 CLEAR_MEMORY_URL = f"{HELPDESK_URL}/clear_memory/" + "{user_id}"
@@ -58,10 +58,10 @@ def welcome():
 
 @app.route("/send-message", methods=["POST"])
 def send_message_to_api():
-    if request.environ.get("HTTP_X_FORWARDED_FOR") is None:
-        user_id = request.environ["REMOTE_ADDR"]
-    else:
+    if request.environ.get("HTTP_X_FORWARDED_FOR"):
         user_id = request.environ["HTTP_X_FORWARDED_FOR"]
+    else:
+        user_id = request.environ["REMOTE_ADDR"]
     chat_data = request.get_json()
     user_input = chat_data["chat"]["message"]
     sliders = get_sliders(slider_data=chat_data["sliders"], bot_type=BotType.HELPDESK_BOT)
@@ -91,13 +91,15 @@ def get_sliders(slider_data: list[dict], bot_type: BotType) -> dict[str, int]:
     """
 
     if bot_type == BotType.ASKER_BOT:
-        # cur_slider_data = slider_data["asker"]
-        cur_slider_data = slider_data
         levels = ["anger_level", "misspelling_level", "anxiety_level", "extensiveness_level"]
+        slider_num = len(levels)
+        # get first half of sliders
+        cur_slider_data = slider_data[:slider_num]
     elif bot_type == BotType.HELPDESK_BOT:
-        # cur_slider_data = slider_data["helpdesk"]
-        cur_slider_data = slider_data
         levels = ["politeness_level", "emotion_level", "humor_level", "extensiveness_level"]
+        slider_num = len(levels)
+        # get second half of sliders
+        cur_slider_data = slider_data[slider_num:]
     else:
         raise ValueError(f"No such bot type: {bot_type}")
 
