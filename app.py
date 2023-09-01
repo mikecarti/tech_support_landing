@@ -49,7 +49,8 @@ def welcome():
     payload = {
         "text": "",
         "sliders": sliders,
-        "required_question_index": data["data"]["required_question_index"]
+        "required_question_index": data["data"]["required_question_index"],
+        "required_dialog_index": data["data"]["required_question_index"]
     }
     question = requests.get(ASKER_QUESTION_URL, json=payload).json()
     return jsonify({"response": question})
@@ -57,10 +58,14 @@ def welcome():
 
 @app.route("/send-message", methods=["POST"])
 def send_message_to_api():
+    if request.environ.get("HTTP_X_FORWARDED_FOR") is None:
+        user_id = request.environ["REMOTE_ADDR"]
+    else:
+        user_id = request.environ["HTTP_X_FORWARDED_FOR"]
     chat_data = request.get_json()
     user_input = chat_data["chat"]["message"]
     sliders = get_sliders(slider_data=chat_data["sliders"], bot_type=BotType.HELPDESK_BOT)
-    user_id = 228228
+    # user_id = 228228
 
     if user_input == "/clear":
         response: TowardsFrontendPayload = clear_memory(user_id)
@@ -74,7 +79,8 @@ def send_message_to_api():
     answer_text = response.text
     function_name = response.function
     function_args = response.args
-    return jsonify({'response': answer_text, "sliders": sliders, "status_code": 200})
+    print(function_name, function_args)
+    return jsonify({'response': answer_text, "sliders": sliders, "function_name": function_name, "args": function_args,"status_code": 200})
 
 
 def get_sliders(slider_data: list[dict], bot_type: BotType) -> dict[str, int]:
@@ -91,7 +97,7 @@ def get_sliders(slider_data: list[dict], bot_type: BotType) -> dict[str, int]:
     elif bot_type == BotType.HELPDESK_BOT:
         # cur_slider_data = slider_data["helpdesk"]
         cur_slider_data = slider_data
-        levels = ["anger_level", "misspelling_level", "anxiety_level", "extensiveness_level"]
+        levels = ["politeness_level", "emotion_level", "humor_level", "extensiveness_level"]
     else:
         raise ValueError(f"No such bot type: {bot_type}")
 
@@ -99,7 +105,7 @@ def get_sliders(slider_data: list[dict], bot_type: BotType) -> dict[str, int]:
     return {lvl: get_value(cur_slider_data, i) for (i, lvl) in enumerate(levels)}
 
 
-def send_message_to_processing(text: str, user_id: int) -> None:
+def send_message_to_processing(text: str, user_id: str) -> None:
     payload = {
         "text": text,
         "date": datetime.now().isoformat(),
@@ -116,7 +122,7 @@ def send_message_to_processing(text: str, user_id: int) -> None:
         logger.debug(f"Failed to add message <{text}>")
 
 
-def receive_answer(user_id: int, sliders: dict[str, int]) -> TowardsFrontendPayload | dict:
+def receive_answer(user_id: str, sliders: dict[str, int]) -> TowardsFrontendPayload | dict:
     print("\n\n", sliders, "\n\n")
     while True:
         response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "sliders": sliders})
@@ -129,6 +135,7 @@ def receive_answer(user_id: int, sliders: dict[str, int]) -> TowardsFrontendPayl
 
     if response.status_code == 200:
         payload = TowardsFrontendPayload(**response.json())
+        print(payload)
         logger.debug(f"Answer: {payload.text}\nFunction: {payload.function}")
         return payload
     else:

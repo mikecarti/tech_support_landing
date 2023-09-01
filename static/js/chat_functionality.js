@@ -53,7 +53,11 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         .then(async response => await response.json())
         .then(data => {
             console.log(data);
-            drawMessage(senders[1], data.response, chat_messages_container);
+            if (Array.isArray(data.args) && data.args.length === 0) {
+                console.log("No function call is needed");
+                drawMessage(senders[1], data.response, chat_messages_container);
+            } 
+            
             scrollToBottom();
         })
         .catch(error => console.log("Ошибка: ", error));
