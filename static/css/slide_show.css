@@ -2,8 +2,21 @@
     display: flex;
     width: 33.33%;
     overflow: hidden;
+    
 }
 
+.slide {
+    color:white;
+    font-family: 'Days One Cyrillic', sans-serif;
+    flex: 0 0 100%;
+    padding: 0px;
+    text-align: center;
+    transition: transform 1.5s ease-in-out;
+    
+}
+
+
+/*
 .slide-show {
     margin: 10%;
     color: white;
@@ -19,6 +32,7 @@
     height: 100%;
     animation: anim 30s infinite;
 }
+*/
 
 /*.about-us {
     display: flex;
