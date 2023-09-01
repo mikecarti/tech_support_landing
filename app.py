@@ -19,10 +19,10 @@ class BotType(Enum):
 
 LOCAL_URL = "http://127.0.0.1:5000"
 
-HELPDESK_URL = "http://helpdesk_container:8000"
-ASKER_URL = "http://asker_container:8001"
-# HELPDESK_URL = "http://127.0.0.1:8000"
-# ASKER_URL = "http://127.0.0.1:8001"
+# HELPDESK_URL = "http://helpdesk_container:8000"
+# ASKER_URL = "http://asker_container:8001"
+HELPDESK_URL = "http://127.0.0.1:8000"
+ASKER_URL = "http://127.0.0.1:8001"
 ADD_MESSAGE_URL = f"{HELPDESK_URL}/add_message"
 ANSWER_MESSAGE_URL = f"{HELPDESK_URL}/answer_message"
 CLEAR_MEMORY_URL = f"{HELPDESK_URL}/clear_memory/" + "{user_id}"
