@@ -1,5 +1,5 @@
 .sliders {
-    gap: 30px;
+    gap: 10px;
     width: 33.33%;
     display: flex;
     flex-direction: column;
@@ -46,3 +46,15 @@
     cursor: pointer;
     border-radius: 25px;
   }
+
+.sliders .sliders_owner {
+  color: white;
+  font-family: 'Days One', sans-serif;
+  font-size: 24pt;
+}
+
+.sliders .slider_name {
+  color: white;
+  font-family: 'Days One', sans-serif;
+  font-size: 12pt
+}

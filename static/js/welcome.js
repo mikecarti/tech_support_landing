@@ -4,43 +4,50 @@ import { dialogues } from "./dialogues.js";
 import { scrollToBottom } from "./chat_functionality.js";
 
 const welcome_sliders = document.querySelectorAll("input[type='range']");
-console.log(welcome_sliders);
 const chat_container = document.getElementById("chat-popup");
 const giga_chat = document.getElementById("giga-chat");
 const welcomeMessageContainer = document.getElementById("chat-messages");
 const giga_chat_message_container = document.getElementById("giga-chat-messages");
 const senders = ["user", "llm"]
 const giga_senders = ["giga-user", "giga-llm"]
+window.cancelWelcome = false;
 
 export async function sleep(ms) {
     return new Promise(async resolve => await setTimeout(resolve, ms));
 }
 
 async function welcome_chat(){
-  for (let i = 0; i < 5; i++) {
-    for (let j = 0; j < 5; j++) {
-      var sliders = nodeSlidersToJSONSliders(welcome_sliders);
-      var data  = {
-        sliders: sliders,
-        required_dialog_index: i,
-        required_question_index: j
-      }
-      await fetch("/welcome", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          data
+  while (!window.cancelWelcome) {
+    console.log(window.cancelWelcome)
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        var sliders = nodeSlidersToJSONSliders(welcome_sliders);
+        var data  = {
+          sliders: sliders,
+          required_dialog_index: i,
+          required_question_index: j
+        }
+        await fetch("/welcome", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            data
+          })
         })
+        .then(async response => await response.json())
+        .then(async data => {
+          console.log(data);
+          if (window.cancelWelcome) {
+            return
+          }
+          await sendMessageAndGetResponse(data.response, giga_chat_message_container, welcome_sliders, "/send-message", giga_senders);
       })
-      .then(async response => await response.json())
-      .then(async data => {
-        console.log(data);
-        await sendMessageAndGetResponse(data.response, giga_chat_message_container, welcome_sliders, "/send-message", giga_senders);
-    })
+      }
     }
   }
+  
   
 }
 

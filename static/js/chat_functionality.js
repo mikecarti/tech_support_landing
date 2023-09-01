@@ -2,30 +2,6 @@ import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
 import { sleep } from "./welcome.js";
 const chatMessages = document.getElementById('chat-messages');
 
-export function getLlmAnswer(message, endpoint) {
-    if (message !== '') {
-        drawMessage('user', message);
-        scrollToBottom();
-        fetch(endpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: message
-            })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                const responseText = data.response;
-                addMessage('llm',responseText);
-                scrollToBottom();
-            })
-        
-    }
-}
-
 function combineMessageAndSliders(message, nodeSliders) {
     const charData = {
         message: message

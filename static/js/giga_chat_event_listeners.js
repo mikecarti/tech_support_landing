@@ -1,6 +1,7 @@
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
 import { sleep } from "./welcome.js";
 import { sendMessageAndGetResponse } from "./chat_functionality.js";
+// import { cancelWelcome } from "./welcome.js";
 
 const giga_senders = ["giga-user", "giga-llm"]
 const gigamessageInput = document.getElementById('giga-chat-message-input');
@@ -9,6 +10,7 @@ const sliders = document.querySelectorAll("input[type='range']");
 const gigaMessagesContainer = document.getElementById('giga-chat-messages');
 
 gigasendButton.addEventListener('click', () => {
+    window.cancelWelcome = true;
     const message = gigamessageInput.value.trim();
     const data_endpoint = gigasendButton.getAttribute('data-endpoint');
     sendMessageAndGetResponse(message, gigaMessagesContainer, sliders, data_endpoint, giga_senders);
