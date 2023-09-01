@@ -7,14 +7,8 @@ const sendButton = document.getElementById('send-button');
 const chatWindow = document.getElementById('chat-popup');
 const sliders = document.querySelectorAll("input[type='range']");
 
-openButton.addEventListener('click', () => {
-    chatWindow.style.display = 'block';
-    openButton.style.display = 'none';
-});
-
 closeButton.addEventListener('click', () => {
     chatWindow.style.display = 'none';
-    openButton.style.display = 'block';
 });
 
 messageInput.addEventListener('keyup', event => {

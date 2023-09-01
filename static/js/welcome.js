@@ -1,5 +1,5 @@
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
-import { drawMessage, sendMessageAndGetResponse } from "./chat_functionality.js";
+import { drawMessage, sendMessageAndGetResponseWelcome } from "./chat_functionality.js";
 import { dialogues } from "./dialogues.js";
 import { scrollToBottom } from "./chat_functionality.js";
 
@@ -18,9 +18,11 @@ export async function sleep(ms) {
 
 async function welcome_chat(){
   while (!window.cancelWelcome) {
-    console.log(window.cancelWelcome)
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
+        if (window.cancelWelcome) {
+          return
+        }
         var sliders = nodeSlidersToJSONSliders(welcome_sliders);
         var data  = {
           sliders: sliders,
@@ -39,10 +41,7 @@ async function welcome_chat(){
         .then(async response => await response.json())
         .then(async data => {
           console.log(data);
-          if (window.cancelWelcome) {
-            return
-          }
-          await sendMessageAndGetResponse(data.response, giga_chat_message_container, welcome_sliders, "/send-message", giga_senders);
+          await sendMessageAndGetResponseWelcome(data.response, giga_chat_message_container, welcome_sliders, "/send-message", giga_senders);
       })
       }
     }
@@ -81,5 +80,5 @@ window.addEventListener("DOMContentLoaded", async () => {
   await sleep(1500)
   drawMessage("giga-llm", "Чем могу быть полезен?", giga_chat_message_container);
   await welcome_chat();
-  
+  window.cancelWelcome = false;
 });
