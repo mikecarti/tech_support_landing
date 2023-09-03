@@ -1,0 +1,38 @@
+@media only screen and (max-width: 1000px) {
+    .sliders-container {
+        width: 85%;
+        order: 2;
+        align-items: center;
+        z-index: 5;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        bottom: 0%;
+        height: 50%;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 0px 15px 0px 0px;
+        background-color: rgba(212, 212, 212, 0.9); /* Цвет фона с прозрачностью */
+        backdrop-filter: blur(10px);
+        transition: bottom 0.99s ease-in-out;
+        overflow: visible;
+    }
+
+    .sliders-popup-button {
+        display: flex;
+    }
+
+    .giga-chat-container {
+        width: 100%;
+        order: 1;
+    }
+    .about-us {
+        width: 100%;
+        order: 3;
+    }
+
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}

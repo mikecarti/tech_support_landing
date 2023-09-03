@@ -96,7 +96,7 @@ body {
 .square {
     position: relative;
     margin-left: 20px;
-    width: 25%;
+    height: 40%;
     aspect-ratio: 1/1;
     background-color: white;
     background: linear-gradient(to right, #6DDCFF, #7F60F9);

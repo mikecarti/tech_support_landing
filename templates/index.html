@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroSquare</title>
     <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main-styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/slide_show.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sliders.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/popup_sliders.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive.css') }}">
     
 
 </head>
@@ -82,6 +85,50 @@
             </div>
             <div class="giga-chat-overlay"></div>
         </div>
+        <div class="sliders-container" id="sliders-container">
+            <button class="sliders-popup-button" id="sliders-popup-button">X</button>
+            <div class="sliders" id="sliders">
+                <div class="sliders_owner">Asker</div>
+    
+                <div class="slider_name">anger-level</div>
+                <input type="range" min="0" max="3" value="0" step="1" id="anger-level">
+                <div class="slider_name">misspelling_level</div>
+                <input type="range" min="0" max="3" value="0" step="1" id="misspelling_level">
+                <div class="slider_name">anxiety_level</div>
+                <input type="range" min="0" max="3" value="0" step="1" id="anxiety_level">
+                <div class="slider_name">extensiveness_level</div>
+                <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
+    
+                <div class="sliders_owner">HelpDesk</div>
+    
+                <div class="slider_name">politeness_level</div>
+                <input type="range" min="0" max="3" value="0" step="1" id="politeness_level">
+                <div class="slider_name">emotion_level</div>
+                <input type="range" min="0" max="3" value="0" step="1" id="emotion_level">
+                <div class="slider_name">humor_level</div>
+                <input type="range" min="0" max="3" value="0" step="1" id="humor_level">
+                <div class="slider_name">extensiveness_level</div>
+                <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
+            </div>
+        </div>
+            
+    </div>
+    <div class="chat-popup" id="chat-popup">
+        <div class="close-button-container">
+            <button class="close-button" id="close-button">✖</button>
+        </div>
+        <div class="separator"></div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Здесь будут отображаться сообщения -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Введите сообщение...">
+            <button id="send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Отправить</button>
+        </div>
+    </div>
+    <!--
+    <div class="popup-sliders" id="popup-sliders">
+        <button class="sliders-popup-button" id="sliders-popup-button">X</button>
         <div class="sliders" id="sliders">
             <div class="sliders_owner">Asker</div>
 
@@ -106,19 +153,7 @@
             <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
         </div>
     </div>
-    <div class="chat-popup" id="chat-popup">
-        <div class="close-button-container">
-            <button class="close-button" id="close-button">✖</button>
-        </div>
-        <div class="separator"></div>
-        <div class="chat-messages" id="chat-messages">
-            <!-- Здесь будут отображаться сообщения -->
-        </div>
-        <div class="chat-input">
-            <input type="text" id="message-input" placeholder="Введите сообщение...">
-            <button id="send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Отправить</button>
-        </div>
-    </div>
+    -->
     <script type="module" src="{{ url_for('static', filename='js/chat_functionality.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/welcome.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/chat_event_listeners.js') }}"></script>
@@ -127,5 +162,6 @@
     <script type="module" src="{{ url_for('static', filename='js/dialogues.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/func.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/slides.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/popup_sliders.js') }}"></script>
 </body>
 </html>
