@@ -1,11 +1,23 @@
 .about-us {
     display: flex;
+    flex-direction: column;
     width: 33.33%;
+}
+
+.welcome-text {
+    color: white;
+    font-family: 'Days One Cyrillic', sans-serif;
+    text-align: center;
+}
+
+.slide-show {
+    display: flex;
+    width: 100%;
     overflow: hidden;
-    
 }
 
 .slide {
+    z-index: 5;
     color:white;
     font-family: 'Days One Cyrillic', sans-serif;
     flex: 0 0 100%;
@@ -13,4 +25,9 @@
     text-align: center;
     transition: transform 1.5s ease-in-out;
     
+}
+
+.slide .slide-text {
+    text-align: left;
+    padding-left: 2%;
 }

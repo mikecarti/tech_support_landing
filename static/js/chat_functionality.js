@@ -1,4 +1,5 @@
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
+import { func_call_checker } from "./func.js";
 const chatMessages = document.getElementById('chat-messages');
 
 function combineMessageAndSliders(message, nodeSliders) {
@@ -31,13 +32,9 @@ export async function sendMessageAndGetResponseWelcome(message, chat_messages_co
         .then(async response => await response.json())
         .then(data => {
             console.log(data);
-            if (Array.isArray(data.args) && data.args.length === 0) {
-                console.log("No function call is needed");
-                if (!window.cancelWelcome) {
-                    drawMessage(senders[1], data.response, chat_messages_container);
-                }
-            } 
-            
+            if (!window.cancelWelcome) {
+                drawMessage(senders[1], data.response, chat_messages_container);
+            }
             scrollToBottom();
         })
         .catch(error => console.log("Ошибка: ", error));
@@ -59,10 +56,15 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         .then(async response => await response.json())
         .then(data => {
             console.log(data);
-            if (Array.isArray(data.args) && data.args.length === 0) {
+            if (Array.isArray(data.args) && data.args.length !== 0) {
+                if(func_call_checker.check_availability(data.function_name)){
+                    func_call_checker.run_function(data.function_name, data.args);
+                } else {
+                    console.log("No function call is needed");
+                }
+            } else {
                 console.log("No function call is needed");
-                
-            } 
+            }
             drawMessage(senders[1], data.response, chat_messages_container);
             scrollToBottom();
         })
