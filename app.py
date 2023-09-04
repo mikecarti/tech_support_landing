@@ -69,7 +69,6 @@ def send_message_to_api():
     chat_data = request.get_json()
     user_input = chat_data["chat"]["message"]
     sliders = get_sliders(slider_data=chat_data["sliders"], bot_type=BotType.HELPDESK_BOT)
-    # user_id = 228228
 
     if user_input == "/clear":
         response: TowardsFrontendPayload = clear_memory(user_id)
@@ -80,11 +79,9 @@ def send_message_to_api():
         if status_code_error(response):
             return jsonify({'status_code': response.get("status_code")})
 
-    answer_text = response.text
-    function_name = response.function
-    function_args = response.args
-    print(function_name, function_args)
-    return jsonify({'response': answer_text, "sliders": sliders, "function_name": function_name, "args": function_args,"status_code": 200})
+    print(response.function, response.args)
+    return jsonify({'response': response.text, "sliders": sliders,
+                    "function_name": response.function, "args": response.args,"status_code": 200})
 
 
 def get_sliders(slider_data: list[dict], bot_type: BotType) -> dict[str, int]:
