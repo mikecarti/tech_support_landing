@@ -20,7 +20,7 @@ class BotType(Enum):
 
 LOCAL_URL = "http://127.0.0.1:5000"
 
-if 'RAN_BY_DOCKER' in os.environ and os.environ["RAN_BY_DOCKER"] == 1:
+if 'RAN_BY_DOCKER' in os.environ and os.environ["RAN_BY_DOCKER"] == "1":
     HELPDESK_URL = "http://helpdesk_container:8000"
     ASKER_URL = "http://asker_container:8001"
 else:
