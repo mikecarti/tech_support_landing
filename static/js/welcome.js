@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     for (let i = 0; i < dialogues[dialog_number].length; i++) {
       drawMessage(senders[sender_id%2], dialogues[dialog_number][i], welcomeMessageContainer);
       sender_id += 1;
-      scrollToBottom();
+      scrollToBottom(welcomeMessageContainer);
       await sleep(1500);
     }
     await fetch("/static/images/hammer.gif")
@@ -81,6 +81,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
   
   drawMessage("giga-llm", "Простите моего коллегу, он устарел.", giga_chat_message_container);
+  
   await sleep(1500)
   drawMessage("giga-llm", "Чем могу быть полезен?", giga_chat_message_container);
   await welcome_chat();

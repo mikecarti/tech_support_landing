@@ -1,6 +1,7 @@
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
 import { func_call_checker } from "./func.js";
 const chatMessages = document.getElementById('chat-messages');
+const gigaMessages = document.getElementById('giga-chat-messages');
 
 function combineMessageAndSliders(message, nodeSliders) {
     const charData = {
@@ -20,7 +21,7 @@ export async function sendMessageAndGetResponseWelcome(message, chat_messages_co
             drawMessage(senders[0], message, chat_messages_container);
         }
         
-        scrollToBottom();
+        scrollToBottom(chat_messages_container);
         const combinedData = combineMessageAndSliders(message, nodeSliders);
         await fetch(endpoint, {
             method: 'POST',
@@ -35,7 +36,7 @@ export async function sendMessageAndGetResponseWelcome(message, chat_messages_co
             if (!window.cancelWelcome) {
                 drawMessage(senders[1], data.response, chat_messages_container);
             }
-            scrollToBottom();
+            scrollToBottom(chat_messages_container);
         })
         .catch(error => console.log("Ошибка: ", error));
     }
@@ -44,7 +45,7 @@ export async function sendMessageAndGetResponseWelcome(message, chat_messages_co
 export async function sendMessageAndGetResponse(message, chat_messages_container, nodeSliders, endpoint, senders) {
     if (message!=='') {
         drawMessage(senders[0], message, chat_messages_container);
-        scrollToBottom();
+        scrollToBottom(chat_messages_container);
         const combinedData = combineMessageAndSliders(message, nodeSliders);
         await fetch(endpoint, {
             method: 'POST',
@@ -66,7 +67,7 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
                 console.log("No function call is needed");
             }
             drawMessage(senders[1], data.response, chat_messages_container);
-            scrollToBottom();
+            scrollToBottom(chat_messages_container);
         })
         .catch(error => console.log("Ошибка: ", error));
     }
@@ -84,6 +85,6 @@ export function drawMessage(sender, text, chat_messages_container) {
     }
 }
 
-export function scrollToBottom() {
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+export function scrollToBottom(message_container) {
+    message_container.scrollTop = message_container.scrollHeight;
 }
