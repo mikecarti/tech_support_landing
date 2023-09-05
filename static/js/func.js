@@ -2,8 +2,7 @@ class Func {
 
     constructor() {
         this.available_functions = [
-            "change_background_color",
-            "refund_status"
+            "change_background_color"
             ];
     }
 
@@ -17,6 +16,11 @@ class Func {
         } else {
             console.log(`Функция ${function_name} не найдена в объекте.`)
         }
+    }
+
+    change_background_color(color) {
+        const body_obj = document.body
+        body_obj.style.backgroundColor = color;
     }
 }
 

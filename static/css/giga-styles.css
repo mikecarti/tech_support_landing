@@ -89,7 +89,7 @@
 .giga-chat-separator {
     z-index: 1003;
     height: 2px;
-    background-color: #000000;
+    background-color: #4d4d4d7a;
     position: relative;
     margin: 0px 0; 
     /* box-shadow: 0px 2px 2px rgba(212, 212, 212, 0.9);  */
@@ -124,7 +124,7 @@
     margin-bottom: 10px;
     text-align: left;
     max-width: 225px;
-    background-color: #6DDCFF;
+    background-color: #6dddff86;
     border-radius: 10px 0px 10px 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -136,7 +136,7 @@
     margin-bottom: 10px;
     text-align: left;
     max-width: 225px;
-    background-color: #7F60F9;
+    background-color: #7f60f986;
     border-radius: 0px 10px 10px 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -146,30 +146,33 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    bottom: 1%;
+    bottom: 50%;
     left: 0;
-    position: absolute;
+    /* position: absolute; */
 }
 
 .sections {
-    width: 90%;
+    width: 100%;
     justify-content: space-between;
     display: flex;
+    padding: 10px;
 }
 
 .sections button {
     font-size: 16px;
     font-family: 'IBM Plex Sans', sans-serif;
-    background-color: blue;
-    color: #000000;
+    background-color: rgba(134, 134, 134, 0.459);
     border-radius: 25px;
     text-align: center;
+    border: none;
     z-index: 2;
 }
 
+/*
 .sections .products {
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
+*/
 
 .giga-chat-input {
     display: flex;
@@ -180,9 +183,12 @@
 }
 
 .giga-chat-message-input {
+    flex: 1;
+    padding: 5px;
     text-indent: 10%;
     border-radius: 25px;
-    border-color: #000000;
+    border-color: #7f60f986;
+    border-style: solid;
     background: white;
     height: 28px;
 }
@@ -210,7 +216,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50px;
-    border-color: #000000;
+    border-color: #6dddff86;
+    border-style: solid;
     display: flex;
     align-items: center;
     justify-content: center;

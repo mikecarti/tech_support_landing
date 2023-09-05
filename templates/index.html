@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <title>NeuroSquare</title>
     <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,7 @@
     </div>
     <div class="main-container">
         <div class="about-us" id="about-us">
-            <h1 class="welcome-text">Добро пожаловать в NeuroSquare: ваш путь к инновационным решениям!</h1>
+            <!-- <div class="welcome-text">Добро пожаловать в NeuroSquare: ваш путь к инновационным решениям!</div> -->
             <div class="slide-show">
                 <div class="slide" id="slide">
                     <h2 class="slide-title">Слайд 1</h2>
@@ -52,10 +52,6 @@
                 </div>
                 <div class="slide" id="slide">
                     <h2 class="slide-title">Слайд 3</h2>
-                    <p class="slide-text">И тут ещё чёто</p>
-                </div>
-                <div class="slide" id="slide">
-                    <h2 class="slide-title">Слайд 4</h2>
                     <p class="slide-text">И тут ещё чёто</p>
                 </div>
             </div>
@@ -79,6 +75,28 @@
                     <div class="giga-chat-messages" id="giga-chat-messages">
                         <!-- Здесь будут отображаться сообщения -->
                     </div>
+                    <!--
+                    <div class="preset-buttons-container">
+                        <div class="sections" id="sections">
+                            <button class="products" id="products" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Products</button>
+                            <button class="features" id="features" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Features</button>
+                            <button class="pricing" id="pricing" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Pricing</button>
+                            <button class="support" id="support" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Support</button>
+                        </div>
+                    </div>
+                    -->
+                </div>
+                
+                
+                <div class="giga-chat-separator"></div>
+                
+                <div class="phone-bottom-container">
+                    <div class="giga-chat-input">
+                        <input type="text" class="giga-chat-message-input" id="giga-chat-message-input" placeholder="введите запрос">
+                        <button class="giga-chat-send-button" id="giga-chat-send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">
+                            <img src="{{ url_for('static', filename='images/send.png') }}" alt="Send">
+                        </button>
+                    </div>
                     <div class="preset-buttons-container">
                         <div class="sections" id="sections">
                             <button class="products" id="products" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Products</button>
@@ -89,16 +107,6 @@
                     </div>
                 </div>
                 
-                
-                <div class="giga-chat-separator"></div>
-                
-                
-                <div class="giga-chat-input">
-                    <input type="text" class="giga-chat-message-input" id="giga-chat-message-input" placeholder="введите запрос">
-                    <button class="giga-chat-send-button" id="giga-chat-send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">
-                        <img src="{{ url_for('static', filename='images/send.png') }}" alt="Send">
-                    </button>
-                </div>
                 
             </div>
             <div class="giga-chat-overlay"></div>

@@ -8,6 +8,7 @@
     color: white;
     font-family: 'Days One Cyrillic', sans-serif;
     text-align: center;
+    font-size: 24pt;
 }
 
 .slide-show {
@@ -30,4 +31,5 @@
 .slide .slide-text {
     text-align: left;
     padding-left: 2%;
+    font-size: 16pt;
 }
