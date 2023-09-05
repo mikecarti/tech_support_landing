@@ -1,17 +1,18 @@
 @media only screen and (max-width: 1000px) {
+    .giga-chat-container {
+        padding: 5%;
+    }
     .sliders-container {
-        width: 75%;
+        padding-top: 5%;
         order: 2;
         align-items: center;
         z-index: 5;
         position: fixed;
         display: flex;
-        flex-direction: column;
         height: 80%;
-        border-radius: 0px 15px 0px 0px;
+        width: 60%;
         background-color: rgba(212, 212, 212, 0); /* Цвет фона с прозрачностью */
-        
-        transition: bottom 0.99s ease-in-out;
+        transition: left 0.99s ease-in-out;
         overflow: visible;
     }
     
@@ -21,7 +22,7 @@
         border: 1px solid #ccc;
         height: 100%;
         width: 100%;
-        border-radius: 50px 50px 0px 0px;
+        border-radius: 0px 50px 50px 0px;
     }
 
     .sliders input[type="range"] {
@@ -32,9 +33,9 @@
     .sliders-popup-button {
         display: flex;
         background: white;
-        width: 20%;
-        height: 40px;
-        border-radius: 15px 15px 0px 0px;
+        width: 5%;
+        height: 10%;
+        border-radius: 0px 15px 15px 0px;
         align-items: center;
         justify-content: center;
         border: none;
@@ -52,5 +53,9 @@
     .main-container {
         flex-direction: column;
         align-items: center;
+    }
+
+    .upper-side {
+        display: none;
     }
 }
