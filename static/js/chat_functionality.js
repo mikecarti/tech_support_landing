@@ -88,14 +88,17 @@ export function drawMessage(sender, text, chat_messages_container) {
         messageElement.className = `message-${sender}`;
         messageElement.textContent = text;
         messageContainer.appendChild(messageElement);
+        chat_messages_container.append(messageContainer);
         //chat_messages_container.style.height = `${chat_messages_container.style.offsetHeight + messageContainer.offsetHeight}px`;
         //chat_messages_container.style.maxHeight = `${chat_messages_container.offsetHeight + messageContainer.offsetHeight}px`;
         // chat_messages_container.style.height = chat_messages_container.offsetHeight + messageContainer.offsetHeight;
+        /*
         chat_messages_container.append(messageContainer).animate({
             height: "+=" + messageContainer.height()
         }, 200, function() {
             messageContainer.fadeIn(100);
         });
+        */
         //console.log(getComputedStyle(allMessages[0]));
         /*
         allMessages.forEach(element => {
