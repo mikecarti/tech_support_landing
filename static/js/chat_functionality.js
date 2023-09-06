@@ -1,7 +1,5 @@
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
 import { func_call_checker } from "./func.js";
-const chatMessages = document.getElementById('chat-messages');
-const gigaMessages = document.getElementById('giga-chat-messages');
 
 function combineMessageAndSliders(message, nodeSliders) {
     const charData = {
@@ -73,18 +71,45 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
     }
 }
 
+function getTranslateValue(element) {
+    const computedStyle = window.getComputedStyle(element);
+    const transformMatrix = new DOMMatrix(computedStyle.transform)
+    return transformMatrix.m41;
+}
+
 export function drawMessage(sender, text, chat_messages_container) {
     if (text !== null && text !== undefined && text !== NaN && text !== '') {
+        const allMessages = chat_messages_container.querySelectorAll('.message-container');
+        console.log(allMessages)
+        //console.log(getComputedStyle(chat_messages_container));
         const messageElement = document.createElement('div');
         const messageContainer = document.createElement('div');
         messageContainer.className ='message-container';
         messageElement.className = `message-${sender}`;
         messageElement.textContent = text;
         messageContainer.appendChild(messageElement);
-        chat_messages_container.appendChild(messageContainer);
+        //chat_messages_container.style.height = `${chat_messages_container.style.offsetHeight + messageContainer.offsetHeight}px`;
+        //chat_messages_container.style.maxHeight = `${chat_messages_container.offsetHeight + messageContainer.offsetHeight}px`;
+        // chat_messages_container.style.height = chat_messages_container.offsetHeight + messageContainer.offsetHeight;
+        chat_messages_container.append(messageContainer).animate({
+            height: "+=" + messageContainer.height()
+        }, 200, function() {
+            messageContainer.fadeIn(100);
+        });
+        //console.log(getComputedStyle(allMessages[0]));
+        /*
+        allMessages.forEach(element => {
+            const translateValue = getTranslateValue(element);
+            element.style.bottom = `${messageContainer.offsetHeight}px`;
+        });
+        */
+        setTimeout(() => {
+            messageContainer.classList.add('active');
+        }, 300);
     }
 }
 
 export function scrollToBottom(message_container) {
-    message_container.scrollTop = message_container.scrollHeight;
+    //message_container.scrollTop = message_container.scrollHeight;
+    //message_container.scroll({top: 0, behavior: "smooth"});
 }
