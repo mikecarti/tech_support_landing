@@ -66,10 +66,10 @@ def send_message_to_api():
         user_id = request.environ["HTTP_X_FORWARDED_FOR"]
     else:
         user_id = request.environ["REMOTE_ADDR"]
+    
     chat_data = request.get_json()
     user_input = chat_data["chat"]["message"]
     sliders = get_sliders(slider_data=chat_data["sliders"], bot_type=BotType.HELPDESK_BOT)
-
     if user_input == "/clear":
         response: TowardsFrontendPayload = clear_memory(user_id)
     else:

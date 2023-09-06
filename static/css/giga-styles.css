@@ -216,7 +216,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50px;
-    border-color: #6dddff86;
+    border-color: #7f60f986;
     border-style: solid;
     display: flex;
     align-items: center;
@@ -227,6 +227,7 @@
     width: 20px;
     height: 20px;
     display: inline-block;
+    opacity: 0.85;
 }
 
 .giga-chat-messages {

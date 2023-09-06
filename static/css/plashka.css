@@ -1,0 +1,26 @@
+.plashka {
+    display: block;
+    padding: 3%;
+    color: white;
+    font-family: 'Days One Cyrillic', sans-serif;
+    height: 30%;
+    width: 100%;
+    font-size: 12pt;
+    background-color: #b5acf23a;
+    border-radius: 0px 15px 15px 0px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.about-us {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 2%;
+    padding-left: 0;
+}

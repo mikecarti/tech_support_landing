@@ -33,9 +33,10 @@ sliders.forEach((slider) => {
 });
 
 preset_buttons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        const data_endpoint = button.getAttribute('data-endpoint');
-        sendMessageAndGetResponse(preset_messages[index], gigaMessagesContainer, sliders, data_endpoint, giga_senders);
+    button.addEventListener('click', async () => {
         window.cancelWelcome = true;
+        const preset_data_endpoint = button.getAttribute('data-endpoint');
+        await sendMessageAndGetResponse(preset_messages[index], gigaMessagesContainer, sliders, preset_data_endpoint, giga_senders);
+        
     });
 });

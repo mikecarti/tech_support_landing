@@ -11,13 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Plus+Jakarta+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <link rel="preload" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="preload" type="text/css" href="{{ url_for('static', filename='css/giga-styles.css') }}">
-    <link rel="preload" type="text/css" href="{{ url_for('static', filename='css/main-styles.css') }}">
-    <link rel="preload" type="text/css" href="{{ url_for('static', filename='css/slide_show.css') }}">
-    <link rel="preload" type="text/css" href="{{ url_for('static', filename='css/sliders.css') }}">
-    <link rel="preload" type="text/css" href="{{ url_for('static', filename='css/popup_sliders.css') }}">
-    <link rel="preload" type="text/css" href="{{ url_for('static', filename='css/responsive.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/giga-styles.css') }}">
@@ -25,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/slide_show.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sliders.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/popup_sliders.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/plashka.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive.css') }}">
     
 
@@ -49,6 +43,7 @@
     <div class="main-container">
         <div class="about-us" id="about-us">
             <!-- <div class="welcome-text">Добро пожаловать в NeuroSquare: ваш путь к инновационным решениям!</div> -->
+            <!--
             <div class="slide-show">
                 <div class="slide" id="slide">
                     <h2 class="slide-title">Слайд 1</h2>
@@ -62,7 +57,40 @@
                     <h2 class="slide-title">Слайд 3</h2>
                     <p class="slide-text">И тут ещё чёто</p>
                 </div>
+            </div> -->
+            <div class="plashka">
+                <p class="header">NeuroSquare: путь к инновационным решениям!</p>
+                <p class="content">
+                    <ul>
+                        <li>Создание умных ботов</li>
+                        <li>Просто, быстро и качественно</li>
+                        <li>Апгрейд вашего бизнеса до нового уровня</li>
+                    </ul>
+                </p>
             </div>
+            <div class="plashka">
+                <p class="header">Оптимизируй работу поддержки:</p>
+                <p class="content">
+                    <ul>
+                        <li>ИИ решит проблему</li>
+                        <li>ИИ справится с сложными задачами</li>
+                        <li>ИИ учитывает контекст</li>
+                        <li>ИИ заменяет человека</li>
+                    </ul>
+                </p>
+            </div>
+            <div class="plashka">
+                <p class="header">Преимущества нашей технологии:</p>
+                <p class="content">
+                    <ul>
+                        <li>Высокая производительность ИИ</li>
+                        <li>Быстрое обучение</li>
+                        <li>Сокращение расходов на персонал</li>
+                        <li>Обработка тысяч запросов </li>
+                    </ul>
+                </p>
+            </div>
+            
             
             
         </div>
@@ -102,7 +130,7 @@
                     <div class="giga-chat-input">
                         <input type="text" class="giga-chat-message-input" id="giga-chat-message-input" placeholder="введите запрос">
                         <button class="giga-chat-send-button" id="giga-chat-send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">
-                            <img src="{{ url_for('static', filename='images/send.png') }}" alt="Send">
+                            <img src="{{ url_for('static', filename='images/send_color.png') }}" alt="Send">
                         </button>
                     </div>
                     <div class="preset-buttons-container">
@@ -122,27 +150,30 @@
         <div class="sliders-container" id="sliders-container">
             
             <div class="sliders" id="sliders">
-                <div class="sliders_owner">Asker</div>
-    
-                <div class="slider_name">anger-level</div>
-                <input type="range" min="0" max="3" value="0" step="1" id="anger-level">
-                <div class="slider_name">misspelling_level</div>
-                <input type="range" min="0" max="3" value="0" step="1" id="misspelling_level">
-                <div class="slider_name">anxiety_level</div>
-                <input type="range" min="0" max="3" value="0" step="1" id="anxiety_level">
-                <div class="slider_name">extensiveness_level</div>
-                <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
-    
-                <div class="sliders_owner">HelpDesk</div>
-    
-                <div class="slider_name">politeness_level</div>
-                <input type="range" min="0" max="3" value="0" step="1" id="politeness_level">
-                <div class="slider_name">emotion_level</div>
-                <input type="range" min="0" max="3" value="0" step="1" id="emotion_level">
-                <div class="slider_name">humor_level</div>
-                <input type="range" min="0" max="3" value="0" step="1" id="humor_level">
-                <div class="slider_name">extensiveness_level</div>
-                <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
+                <div class="sliders-subcontainer">
+                    <div class="sliders_owner">Asker</div>
+                    <div class="slider_name">anger-level</div>
+                    <input type="range" min="0" max="3" value="0" step="1" id="anger-level">
+                    <div class="slider_name">misspelling_level</div>
+                    <input type="range" min="0" max="3" value="0" step="1" id="misspelling_level">
+                    <div class="slider_name">anxiety_level</div>
+                    <input type="range" min="0" max="3" value="0" step="1" id="anxiety_level">
+                    <div class="slider_name">extensiveness_level</div>
+                    <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
+                </div>
+                
+                <div class="sliders-subcontainer">
+                    <div class="sliders_owner">HelpDesk</div>
+                    <div class="slider_name">politeness_level</div>
+                    <input type="range" min="0" max="3" value="0" step="1" id="politeness_level">
+                    <div class="slider_name">emotion_level</div>
+                    <input type="range" min="0" max="3" value="0" step="1" id="emotion_level">
+                    <div class="slider_name">humor_level</div>
+                    <input type="range" min="0" max="3" value="0" step="1" id="humor_level">
+                    <div class="slider_name">extensiveness_level</div>
+                    <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
+                </div>
+                
             </div>
             <button class="sliders-popup-button" id="sliders-popup-button">X</button>
         </div>

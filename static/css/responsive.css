@@ -12,7 +12,7 @@
         height: 80%;
         width: 400px;
         left: -400px;
-        background-color: rgba(212, 212, 212, 0); /* Цвет фона с прозрачностью */
+        background-color: rgb(212, 212, 212); /* Цвет фона с прозрачностью */
         transition: left 0.99s ease-in-out;
         overflow: visible;
     }
@@ -33,7 +33,7 @@
 
     .sliders-popup-button {
         display: flex;
-        background: white;
+        background: rgb(134, 134, 134);
         width: 5%;
         height: 10%;
         border-radius: 0px 15px 15px 0px;

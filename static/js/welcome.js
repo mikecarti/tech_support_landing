@@ -85,5 +85,4 @@ window.addEventListener("DOMContentLoaded", async () => {
   await sleep(1500)
   drawMessage("giga-llm", "Чем могу быть полезен?", giga_chat_message_container);
   await welcome_chat();
-  window.cancelWelcome = false;
 });
