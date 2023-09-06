@@ -75,7 +75,6 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
 
 export function drawMessage(sender, text, chat_messages_container) {
     if (text !== null && text !== undefined && text !== NaN && text !== '') {
-        console.log(text);
         const messageElement = document.createElement('div');
         const messageContainer = document.createElement('div');
         messageContainer.className ='message-container';
