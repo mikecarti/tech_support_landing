@@ -108,21 +108,16 @@ function getTranslateValue(element) {
 
 export async function drawMessage(sender, text, chat_messages_container) {
     if (text !== null && text !== undefined && text !== NaN && text !== '') {
-        const messageElement = document.createElement('div');
-        const messageContainer = document.createElement('div');
-        messageContainer.className ='message-container';
-        messageElement.className = `message-${sender}`;
-        messageElement.textContent = text;
-        messageContainer.appendChild(messageElement);
-        chat_messages_container.append(messageContainer);
-    
-        setTimeout(() => {
         if (isWriting) {
             // A message is currently being written, so wait for it to complete before adding the new message.
-            new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 100));
             return drawMessage(sender, text, chat_messages_container); // Retry adding the message after a delay.
-        }});
+        }
 
+        const allMessages = chat_messages_container.querySelectorAll('.message-container');
+        const messageContainer = document.createElement('div');
+        messageContainer.className = 'message-container';
+        chat_messages_container.appendChild(messageContainer);
 
         isWriting = true; // Set the flag to indicate that a message is being written.
 
@@ -147,7 +142,6 @@ export async function drawMessage(sender, text, chat_messages_container) {
             // Call the function to add characters
             await appendCharacter();
         }, 300);
-
     }
 }
 
