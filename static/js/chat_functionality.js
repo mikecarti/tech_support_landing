@@ -114,7 +114,6 @@ export async function drawMessage(sender, text, chat_messages_container) {
             return drawMessage(sender, text, chat_messages_container); // Retry adding the message after a delay.
         }
 
-        const allMessages = chat_messages_container.querySelectorAll('.message-container');
         const messageContainer = document.createElement('div');
         messageContainer.className = 'message-container';
         chat_messages_container.appendChild(messageContainer);
