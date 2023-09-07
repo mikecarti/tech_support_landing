@@ -1,5 +1,7 @@
 .sliders-container {
-  width: 33.33%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .sliders-subcontainer {
@@ -14,19 +16,26 @@
 
 .sliders {
   display: flex;
-  flex-direction: column;
-  gap: 60px;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .sliders-popup-button {
   display: none;
 }
 
+.sliders-popup-button img {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  opacity: 1;
+}
+
 
 /* Стилизация основного элемента ползунка */
 .sliders input[type="range"] {
     /* Общие стили */
-    width: 50%;
+    width: 95%;
     height: 10px;
     appearance: none; /* Убирает стандартный стиль браузера */
     background-color: #ffffff;

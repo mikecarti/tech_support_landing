@@ -1,8 +1,8 @@
 .giga-chat-container {
-    height: 600px;
-    width: 33.33%;
+    width: 50%;
     justify-content: center;
-    align-items: center;
+    padding: 3%;
+    padding-right: 0;
     display: flex;
 }
 
@@ -10,8 +10,8 @@
     border-radius: 50px;
     z-index: 0;
     position: absolute;
-    width: 450px;
-    height: 650px;
+    width: 550px;
+    height: 700px;
     background: linear-gradient(to bottom, #7F60F9, #6DDCFF, #7F60F9);
     filter: blur(100px);
 }
@@ -29,8 +29,8 @@
 }
 
 .giga-chat.active {
-    width: 400px;
-    height: 600px;
+    width: 450px;
+    height: 700px;
 }
 
 .giga-chat-close-button-container {
@@ -112,7 +112,6 @@
 .giga-chat-messages {
     z-index: 5;
     background-color: white;
-    transition: 0.3s ease-in-out;
     scroll-behavior: smooth;
     
     
@@ -125,15 +124,17 @@
 }
 
 .message-container {
+    transform-origin: bottom;
     position: relative;
     bottom: 0;
-    padding: 2%;
+    padding-left: 7%;
+    padding-right: 7%;
     display: flex;
     width: 100%;
     box-sizing: border-box;
     transform: translateY(100%); /* Initially, messages are hidden below */
     opacity: 0; /* Initially, messages are invisible */
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, bottom 0.3s ease-in-out; /* Define the transition */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Define the transition */
 }
 
 
@@ -172,7 +173,6 @@
     width: 100%;
     bottom: 50%;
     left: 0;
-    /* position: absolute; */
 }
 
 .sections {
@@ -191,12 +191,6 @@
     border: none;
     z-index: 2;
 }
-
-/*
-.sections .products {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-*/
 
 .giga-chat-input {
     display: flex;

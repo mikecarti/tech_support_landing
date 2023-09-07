@@ -79,9 +79,6 @@ function getTranslateValue(element) {
 
 export function drawMessage(sender, text, chat_messages_container) {
     if (text !== null && text !== undefined && text !== NaN && text !== '') {
-        const allMessages = chat_messages_container.querySelectorAll('.message-container');
-        console.log(allMessages)
-        //console.log(getComputedStyle(chat_messages_container));
         const messageElement = document.createElement('div');
         const messageContainer = document.createElement('div');
         messageContainer.className ='message-container';
@@ -89,26 +86,11 @@ export function drawMessage(sender, text, chat_messages_container) {
         messageElement.textContent = text;
         messageContainer.appendChild(messageElement);
         chat_messages_container.append(messageContainer);
-        //chat_messages_container.style.height = `${chat_messages_container.style.offsetHeight + messageContainer.offsetHeight}px`;
-        //chat_messages_container.style.maxHeight = `${chat_messages_container.offsetHeight + messageContainer.offsetHeight}px`;
-        // chat_messages_container.style.height = chat_messages_container.offsetHeight + messageContainer.offsetHeight;
-        /*
-        chat_messages_container.append(messageContainer).animate({
-            height: "+=" + messageContainer.height()
-        }, 200, function() {
-            messageContainer.fadeIn(100);
-        });
-        */
-        //console.log(getComputedStyle(allMessages[0]));
-        /*
-        allMessages.forEach(element => {
-            const translateValue = getTranslateValue(element);
-            element.style.bottom = `${messageContainer.offsetHeight}px`;
-        });
-        */
+    
         setTimeout(() => {
             messageContainer.classList.add('active');
         }, 300);
+
     }
 }
 
