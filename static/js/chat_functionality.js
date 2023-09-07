@@ -2,7 +2,7 @@ import {nodeSlidersToJSONSliders} from "./chat_sliders.js";
 import {func_call_checker} from "./func.js";
 
 let isWriting = false;
-
+let isAllowedToSend = true; // Изначально разрешаем отправку сообщений
 function combineMessageAndSliders(message, nodeSliders) {
     const charData = {
         message: message
@@ -12,15 +12,15 @@ function combineMessageAndSliders(message, nodeSliders) {
         chat: charData,
         sliders: slidersData
     };
+
     return combinedData;
 
 }
-
 export async function sendMessageAndGetResponseWelcome(message, chat_messages_container, nodeSliders, endpoint, senders) {
     if (message !== '') {
         if (!window.cancelWelcome) {
-            drawMessage(senders[0], message, chat_messages_container);
 
+            drawMessage(senders[0], message, chat_messages_container);
         }
         scrollToBottom(chat_messages_container);
         const combinedData = combineMessageAndSliders(message, nodeSliders);
@@ -40,11 +40,10 @@ export async function sendMessageAndGetResponseWelcome(message, chat_messages_co
                 scrollToBottom(chat_messages_container);
             })
             .catch(error => console.log("Ошибка: ", error));
+
     }
 
 }
-
-let isAllowedToSend = true; // Изначально разрешаем отправку сообщений
 
 export async function sendMessageAndGetResponse(message, chat_messages_container, nodeSliders, endpoint, senders) {
     const sendButton = document.getElementById('giga-chat-send-button'); // Получаем кнопку по ее ID
