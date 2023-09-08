@@ -96,4 +96,13 @@
         text-align: center;
         padding: 20px;
     }
+
+    .gif-container {
+
+    }
+
+    .chat-popup {
+        right: 0;
+        width: 100%;
+    }
 }

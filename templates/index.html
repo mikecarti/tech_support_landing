@@ -83,9 +83,9 @@
                 
                 
             </div>
-            <div class="giga-chat-overlay"></div>
+            <div class="giga-chat-overlay" id="giga-chat-overlay"></div>
         </div>
-        <div class="right-subcontainer">
+        <div class="right-subcontainer" id="right-subcontainer">
             <div class="sliders-container" id="sliders-container">
             
                 <div class="sliders" id="sliders">
@@ -165,33 +165,27 @@
         
         
     </div>
-    <!--
     <div class="chat-popup" id="chat-popup">
         <div class="close-button-container">
             <button class="close-button" id="close-button">✖</button>
         </div>
         <div class="separator"></div>
-        <div class="chat-messages" id="chat-messages">
-
-            <!-- Здесь будут отображаться сообщения -->
-            <!--
+        <div class="old-chat-screen-container">
+            <div class="giga-chat-messages" id="chat-messages">
+                <!-- Здесь будут отображаться сообщения -->
+            </div>
         </div>
-        <div class="chat-input">
-            <input type="text" id="message-input" placeholder="Введите сообщение...">
-            <button id="send-button" data-endpoint="/send-message" sliders-endpoint="/process-sliders">Отправить</button>
-        </div>
-    </div>-->
+    </div>
             
     
-
+    <script type="module" src="{{ url_for('static', filename='js/dialogues.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/chat_functionality.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='js/welcome.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/chat_event_listeners.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/chat_sliders.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/giga_chat_event_listeners.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='js/dialogues.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/func.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/slides.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/popup_sliders.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/welcome.js') }}"></script>
 </body>
 </html>

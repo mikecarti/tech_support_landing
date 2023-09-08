@@ -17,13 +17,14 @@
     position: fixed;
     bottom: -400px;
     right: 20px;
-    width: 450px;
+    width: 400px;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 0px 15px 0px 0px;
     background-color: rgba(212, 212, 212, 0.9); /* Цвет фона с прозрачностью */
     backdrop-filter: blur(10px);
     transition: bottom 0.99s ease-in-out;
+    height: 400px;
 }
 
 .close-button-container {
@@ -57,17 +58,24 @@
     overflow-y: auto;
 }
 
+.old-chat-screen-container {
+    height: 90%;
+    width: 100%;
+    background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    transition: 0.3s ease-in-out;
+}
+
 .chat-input {
     display: flex;
     padding: 10px;
 }
-/*
-input[type="text"] {
-    flex: 1;
-    padding: 5px;
-    border: 1px solid #000000;
-}
-*/
+
 .chat-messages {
     display: flex;
     flex-direction: column;
@@ -75,10 +83,12 @@ input[type="text"] {
 
 .message-user{
     float: right;
+    position: relative;
+    margin-left: auto;
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
-    text-align: justify;
+    text-align: left;
     max-width: 225px;
     background-color: rgb(210, 188, 149);
     border-radius: 10px 0px 10px 10px;
@@ -87,10 +97,12 @@ input[type="text"] {
 
 .message-llm{
     float: left;
+    margin-right: auto;
+    position: relative;
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
-    text-align: justify;
+    text-align: left;
     max-width: 225px;
     background-color: rgb(231, 231, 231);
     border-radius: 0px 10px 10px 10px;

@@ -16,6 +16,12 @@ body {
     width: 50%;
     padding: 3%;
     padding-left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.right-subcontainer.active {
+    opacity: 1;
 }
 
 .main-container {
@@ -117,4 +123,12 @@ body {
     font-family: 'Days One', sans-serif;
     text-transform: uppercase;
     line-height: 28.5px;
+}
+
+.gif-container {
+    position: fixed;
+    opacity: 1;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
 }
