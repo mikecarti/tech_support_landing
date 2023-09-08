@@ -3,6 +3,7 @@ import {func_call_checker} from "./func.js";
 
 let isWriting = false;
 let isAllowedToSend = true; // Изначально разрешаем отправку сообщений
+
 function combineMessageAndSliders(message, nodeSliders) {
     const charData = {
         message: message
@@ -14,6 +15,14 @@ function combineMessageAndSliders(message, nodeSliders) {
     };
 
     return combinedData;
+
+}
+
+function sendHint() {
+
+}
+
+function waitForLLMAnimation(user_message_container) {
 
 }
 export async function sendMessageAndGetResponseWelcome(message, chat_messages_container, nodeSliders, endpoint, senders) {
@@ -115,7 +124,7 @@ async function drawMessageForWideScreen(sender, text, chat_messages_container) {
         if (isWriting) {
             // A message is currently being written, so wait for it to complete before adding the new message.
             await new Promise(resolve => setTimeout(resolve, 100));
-            return drawMessage(sender, text, chat_messages_container); // Retry adding the message after a delay.
+            return drawMessageForWideScreen(sender, text, chat_messages_container); // Retry adding the message after a delay.
         }
 
         const messageContainer = document.createElement('div');

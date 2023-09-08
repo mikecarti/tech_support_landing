@@ -17,7 +17,6 @@
 .sliders {
   display: flex;
   flex-direction: row;
-  gap: 10px;
 }
 
 .sliders-popup-button {
@@ -74,12 +73,12 @@
 
 .sliders .sliders_owner {
   color: white;
-  font-family: 'Days One Cyrillic', sans-serif;
-  font-size: 24pt;
+  font-family: "RFTone";
+  font-size: 22pt;
 }
 
 .sliders .slider_name {
   color: white;
-  font-family: 'Days One Cyrillic', sans-serif;
+  font-family: "RFTone";
   font-size: 12pt
 }

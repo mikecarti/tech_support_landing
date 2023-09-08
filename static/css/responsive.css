@@ -21,8 +21,8 @@
         position: fixed;
         display: flex;
         height: 100%;
-        width: 400px;
-        left: -400px;
+        width: 350px;
+        left: -350px;
         bottom: 0;
         background-color: rgba(212, 212, 212, 0); /* Цвет фона с прозрачностью */
         transition: left 0.99s ease-in-out;

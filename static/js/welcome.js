@@ -1,7 +1,6 @@
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
 import { drawMessage, sendMessageAndGetResponseWelcome } from "./chat_functionality.js";
 import { dialogues } from "./dialogues.js";
-console.log(dialogues);
 import Utils from "./utils.js";
 
 const welcome_sliders = document.querySelectorAll("input[type='range']");
@@ -12,7 +11,7 @@ const welcomeMessageContainer = document.getElementById("chat-messages");
 const giga_chat_message_container = document.getElementById("giga-chat-messages");
 const right_container = document.getElementById("right-subcontainer");
 const senders = ["user", "llm"]
-const giga_senders = ["giga-user", "giga-llm"]
+const giga_senders = ["giga-asker", "giga-llm"]
 window.cancelWelcome = false;
 const skip_intro = false;
 
@@ -54,7 +53,7 @@ async function welcome_chat(){
 
 
 async function oldChat(dialogues, chat_window, chat_msg_container) {
-  const dialogue_number = Utils.getRandomInt(0, dialogues.length);
+  const dialogue_number = Utils.getRandomInt(0, dialogues.length-1);
   chat_window.style.bottom = `0px`;
   var sender_id = 1;
   if (window.matchMedia("(min-width: 1024px)").matches) {
@@ -62,12 +61,14 @@ async function oldChat(dialogues, chat_window, chat_msg_container) {
       await drawMessage(senders[sender_id%2], dialogues[dialogue_number][i], chat_msg_container);
       sender_id += 1;
     }
+    await sleep(5500);
   } else {
     for (let i = 0; i < dialogues[dialogue_number].length; i++) {
       drawMessage(senders[sender_id%2], dialogues[dialogue_number][i], chat_msg_container);
       sender_id += 1;
-      await sleep(1000);
+      await sleep(1500);
     }
+    return
   }
 }
 
@@ -76,7 +77,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (!skip_intro) {
     const gif = document.createElement("img");
     await oldChat(dialogues, chat_container, welcomeMessageContainer);
-
     await fetch("/static/images/hammer.gif")
     .then(async response => await response.blob())
     .then(blob => {

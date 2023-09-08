@@ -1,6 +1,6 @@
 import { sendMessageAndGetResponse } from "./chat_functionality.js";
 
-const giga_senders = ["giga-user", "giga-llm"]
+const giga_chat_senders = ["giga-user", "giga-llm"]
 const gigamessageInput = document.getElementById('giga-chat-message-input');
 const gigasendButton = document.getElementById("giga-chat-send-button");
 const sliders = document.querySelectorAll("input[type='range']");
@@ -13,7 +13,7 @@ gigasendButton.addEventListener('click', () => {
     window.cancelWelcome = true;
     const message = gigamessageInput.value.trim();
     const data_endpoint = gigasendButton.getAttribute('data-endpoint');
-    sendMessageAndGetResponse(message, gigaMessagesContainer, sliders, data_endpoint, giga_senders);
+    sendMessageAndGetResponse(message, gigaMessagesContainer, sliders, data_endpoint, giga_chat_senders);
     gigamessageInput.value = '';
 });
 
@@ -36,7 +36,7 @@ preset_buttons.forEach((button, index) => {
     button.addEventListener('click', async () => {
         window.cancelWelcome = true;
         const preset_data_endpoint = button.getAttribute('data-endpoint');
-        await sendMessageAndGetResponse(preset_messages[index], gigaMessagesContainer, sliders, preset_data_endpoint, giga_senders);
+        await sendMessageAndGetResponse(preset_messages[index], gigaMessagesContainer, sliders, preset_data_endpoint, giga_chat_senders);
         
     });
 });
