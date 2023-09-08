@@ -1,6 +1,7 @@
 import {nodeSlidersToJSONSliders} from "./chat_sliders.js";
 import {func_call_checker} from "./func.js";
 import { sleep } from "./welcome.js";
+import Utils from "./utils.js";
 
 let isWriting = false;
 let isAllowedToSend = true; // Изначально разрешаем отправку сообщений
@@ -73,7 +74,16 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         sendButton.disabled = true; // Отключить кнопку отправки
 
         await drawMessage(senders[0], message, chat_messages_container);
-        scrollToBottom(chat_messages_container);
+        /*
+        // scrollToBottom(chat_messages_container);
+        //await sleep(600);
+        //await drawMessage(senders[1], "_", chat_messages_container);
+        //Utils.animateHeight(chat_messages_container, 500);
+        const llm_messages = document.querySelectorAll(".message-giga-llm")
+        const last_llm_message = llm_messages[llm_messages.length - 1];
+        last_llm_message.textContent = "";
+        last_llm_message.classList.add("incoming");
+        */
         const combinedData = combineMessageAndSliders(message, nodeSliders);
         try {
             const response = await fetch(endpoint, {
@@ -95,8 +105,13 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
                 } else {
                     console.log("No function call is needed");
                 }
+                /*
+                last_llm_message.classList.remove("incoming");
+                last_llm_message.textContent = data.response;
+                */
                 drawMessage(senders[1], data.response, chat_messages_container);
                 scrollToBottom(chat_messages_container);
+                
             } else {
                 console.error("Ошибка в ответе сервера");
             }

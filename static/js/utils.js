@@ -14,6 +14,11 @@ class Utils {
         slider.style.background = gradient;
 
     }
+
+    static animateHeight(element, delta) {
+        const newHeight = `${element.offsetHeight + delta}px`;
+        element.animate({height: newHeight}, 500)
+    }
 }
 
 export default Utils;

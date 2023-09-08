@@ -24,9 +24,20 @@ export async function sleep(ms) {
 }
 
 async function welcome_chat(){
+  var count = 0;
+  const scren_h = document.getElementById("phone-screen-container")
+  console.log(scren_h.offsetHeight)
+  console.log(getComputedStyle(scren_h).maxHeight)
+  scren_h.style.maxHeight = `${scren_h.offsetHeight + 100}px`
+  console.log(getComputedStyle(scren_h).maxHeight)
+
   while (!window.cancelWelcome) {
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
+        cnt += 1;
+        if (count === 30) {
+          window.cancelWelcome = true;
+        }
         if (window.cancelWelcome) {
           return
         }

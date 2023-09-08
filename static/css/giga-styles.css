@@ -199,36 +199,25 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.message-incoming {
-    font-family: "RFTone";
-    float: left;
-    margin-right: auto;
-    position: relative;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    text-align: left;
-    max-width: 300px;
-    min-width: 100px;
-    width: auto;
-    background-color: #7f60f986;
-    border-radius: 0px 10px 10px 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    animation: typing 1s infinite;
+.incoming::after {
+    animation: typing 2s infinite;
+    content: "Печатает";
 }
 
 @keyframes typing {
-    0% {
+    
+    25% {
         content: "Печатает.";
     }
 
-    33% {
+    50% {
         content: "Печатает..";
     }
 
-    66% {
+    75% {
         content: "Печатает...";
-    }
+    } 
+
 }
 
 .preset-buttons-container {
