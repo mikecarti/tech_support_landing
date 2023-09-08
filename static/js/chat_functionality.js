@@ -26,6 +26,9 @@ function sendHint() {
 function waitForLLMAnimation(user_message_container) {
 
 }
+
+
+
 export async function sendMessageAndGetResponseWelcome(message, chat_messages_container, nodeSliders, endpoint, senders) {
     if (message !== '') {
         if (!window.cancelWelcome) {
@@ -69,7 +72,7 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         isAllowedToSend = false;
         sendButton.disabled = true; // Отключить кнопку отправки
 
-        drawMessage(senders[0], message, chat_messages_container);
+        await drawMessage(senders[0], message, chat_messages_container);
         scrollToBottom(chat_messages_container);
         const combinedData = combineMessageAndSliders(message, nodeSliders);
         try {
@@ -192,6 +195,37 @@ export async function drawMessage(sender, text, chat_messages_container) {
 }
 
 
+export async function drawUserMessage(sender, text, chat_messages_container) {
+    const messageContainer = document.createElement('div');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = text;
+    messageContainer.className ='message-container';
+    messageElement.className = `message-${sender}`;
+    messageContainer.appendChild(messageElement);
+    chat_messages_container.appendChild(messageContainer);
+    setTimeout(() => {
+        messageContainer.classList.add('active');
+    }, 300);
+}
+
+
 export function scrollToBottom(message_container) {
     message_container.scrollTop = message_container.scrollHeight;
 }
+
+
+export async function drawMessage_NOT_STABLE(sender, text, chat_messages_container) {
+    const sender_entity = sender.split('-')[0];
+    switch (sender_entity) {
+        case "user":
+            drawUserMessage(sender, text, chat_messages_container);
+            break;
+
+        case "llm":
+            console.log(sender_entity);
+
+        case "asker":
+            console.log(sender_entity);
+    }
+}
+

@@ -4,6 +4,7 @@ import { dialogues } from "./dialogues.js";
 import Utils from "./utils.js";
 
 const welcome_sliders = document.querySelectorAll("input[type='range']");
+Utils.setSliderValue(welcome_sliders[4], 2);
 const chat_container = document.getElementById("chat-popup");
 const giga_chat = document.getElementById("giga-chat");
 const giga_chat_overlay = document.getElementById("giga-chat-overlay");

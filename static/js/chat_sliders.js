@@ -18,20 +18,6 @@ export function nodeSlidersToJSONSliders(nodeSliders) {
     return slidersData;
 }
 
-function sendSliderDataToBackend(sliderID, sliderValue) {
-    fetch("/manual-slider-update", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            sliderID: sliderID,
-            sliderValue: sliderValue
-        })
-    })
-    .then(response => response.json())
-}
-
 export function sendSlidersDataToEndpoint(sliders, endpoint) {
     const jsonString = JSON.stringify(sliders);
     var urlEncodedJson = encodeURIComponent(jsonString);
