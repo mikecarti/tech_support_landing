@@ -16,8 +16,10 @@ class Utils {
     }
 
     static animateHeight(element, delta) {
+        console.log(element.offsetHeight);
         const newHeight = `${element.offsetHeight + delta}px`;
         element.animate({height: newHeight}, 500)
+        console.log(element.offsetHeight);
     }
 }
 

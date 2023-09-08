@@ -76,9 +76,9 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         await drawMessage(senders[0], message, chat_messages_container);
         /*
         // scrollToBottom(chat_messages_container);
-        //await sleep(600);
-        //await drawMessage(senders[1], "_", chat_messages_container);
-        //Utils.animateHeight(chat_messages_container, 500);
+        await sleep(600);
+        await drawMessage(senders[1], "_", chat_messages_container);
+        Utils.animateHeight(chat_messages_container, 500);
         const llm_messages = document.querySelectorAll(".message-giga-llm")
         const last_llm_message = llm_messages[llm_messages.length - 1];
         last_llm_message.textContent = "";
@@ -111,6 +111,7 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
                 */
                 drawMessage(senders[1], data.response, chat_messages_container);
                 scrollToBottom(chat_messages_container);
+                
                 
             } else {
                 console.error("Ошибка в ответе сервера");
