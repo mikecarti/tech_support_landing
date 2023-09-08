@@ -7,7 +7,7 @@ const sliders = document.querySelectorAll("input[type='range']");
 const gigaMessagesContainer = document.getElementById('giga-chat-messages');
 const preset_buttons_container = document.getElementById('sections');
 const preset_buttons = preset_buttons_container.querySelectorAll('button');
-const preset_messages = ["Расскажите о ваших продуктах.", "Расскажите об особенностях ваших ботов.", "Какие цены?.", "Поддержка."];
+const preset_messages = ["Расскажите о ваших продуктах.", "Расскажите об особенностях ваших ботов.", "Какие цены?", "Поддержка."];
 
 gigasendButton.addEventListener('click', () => {
     window.cancelWelcome = true;

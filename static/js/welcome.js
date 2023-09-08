@@ -13,7 +13,7 @@ const right_container = document.getElementById("right-subcontainer");
 const senders = ["user", "llm"]
 const giga_senders = ["giga-asker", "giga-llm"]
 window.cancelWelcome = false;
-const skip_intro = false;
+const skip_intro = true;
 
 export async function sleep(ms) {
     return new Promise(async resolve => await setTimeout(resolve, ms));
@@ -88,7 +88,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     });
   
   await sleep(1300)
-  chat_container.style.bottom = "-600px";
+  chat_container.style.bottom = "-750px";
   await sleep(450)
   gif.style.display = "none"
   await sleep(1500)

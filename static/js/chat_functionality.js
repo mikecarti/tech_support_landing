@@ -1,5 +1,6 @@
 import {nodeSlidersToJSONSliders} from "./chat_sliders.js";
 import {func_call_checker} from "./func.js";
+import { sleep } from "./welcome.js";
 
 let isWriting = false;
 let isAllowedToSend = true; // Изначально разрешаем отправку сообщений
@@ -107,17 +108,27 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
 }
 
 
-async function addLoadingToMessageContainer(messageContainer) {
+async function addLoadingAnimToChat(chatMessageContainer) {
+    /*
     const loading = document.createElement("img");
-    await fetch("/static/imahes/loading.gif")
+    const messageElement = document.createElement('div');
+    const messageContainer = document.createElement('div');
+    await fetch("/static/images/loading.gif")
     .then(async response => await response.blob())
     .then(async blob => {
-        const loading_gif_container = document.createElement('div');
-        loading_gif_container.className = "loading_gif_container";
+        messageElement.className  = `message-giga-llm`;
+        messageContainer.className = `message-container`;
         loading.src = URL.createObjectURL(blob);
-        loading_gif_container.appendChild(loading);
-        messageContainer.appendChild(loading_gif_container);
+        messageElement.appendChild(loading);
+        messageContainer.appendChild(messageElement);
+        chatMessageContainer.appendChild(messageContainer);
+        messageContainer.classList.add('active');
     });
+    */
+    const messageElement = document.createElement('div');
+    const messageContainer = document.createElement('div');
+
+
 }
 
 function drawMessageMobile(sender, text, chat_messages_container) {

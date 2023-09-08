@@ -169,10 +169,18 @@
     margin-bottom: 10px;
     text-align: left;
     max-width: 300px;
+    min-width: 100px;
     width: auto;
     background-color: #7f60f986;
     border-radius: 0px 10px 10px 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.message-giga-llm img{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    opacity: 0.85;
 }
 
 .message-giga-asker{
@@ -187,7 +195,7 @@
     max-width: 300px;
     width: auto;
     background-color: #9e52aa86;
-    border-radius: 0px 10px 10px 10px;
+    border-radius: 10px 0px 10px 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -202,14 +210,18 @@
 
 .sections {
     width: 100%;
-    justify-content: space-between;
-    display: flex;
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
     padding: 10px;
+    column-gap: 30px;
+    row-gap: 15px;
+    padding-right: 15%;
+    padding-left: 15%;
 }
 
 .sections button {
     font-size: 16px;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: "RFTone";
     background-color: rgba(134, 134, 134, 0.459);
     border-radius: 25px;
     text-align: center;
