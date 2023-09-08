@@ -1,7 +1,6 @@
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
 import { drawMessage, sendMessageAndGetResponseWelcome } from "./chat_functionality.js";
 import { dialogues } from "./dialogues.js";
-import { scrollToBottom } from "./chat_functionality.js";
 
 const welcome_sliders = document.querySelectorAll("input[type='range']");
 const chat_container = document.getElementById("chat-popup");
@@ -56,7 +55,7 @@ async function welcome_chat(){
 window.addEventListener("DOMContentLoaded", async () => {
   if (!skip_intro) {
     const gif = document.createElement("img");
-    const dialog_number = Math.floor(Math.random() * (dialogues.length - 0 + 1)) + 0;
+    const dialog_number = Math.floor(Math.random() * (dialogues.length - 0 + 1) + 0);
     chat_container.style.bottom = "0px";
     var sender_id = 1;
     for (let i = 0; i < dialogues[dialog_number].length; i++) {

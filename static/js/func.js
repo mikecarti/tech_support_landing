@@ -19,7 +19,7 @@ class Func {
     }
 
     change_background_color(color) {
-        const body_obj = document.body
+        const body_obj = document.body;
         body_obj.style.backgroundColor = color;
     }
 }

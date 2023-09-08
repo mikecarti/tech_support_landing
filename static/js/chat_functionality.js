@@ -97,17 +97,21 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
     }
 }
 
+function drawMessageMobile(sender, text, chat_messages_container) {
+    const messageContainer = document.createElement('div');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = text;
+    messageContainer.className = 'message-container';
+    messageElement.className = `message-${sender}`;
+    messageContainer.appendChild(messageElement);
+    chat_messages_container.appendChild(messageContainer);
 
-function getTranslateValue(element) {
-    const computedStyle = window.getComputedStyle(element);
-    const transformMatrix = new DOMMatrix(computedStyle.transform)
-    return transformMatrix.m41;
-
+    setTimeout(() => {
+        messageContainer.classList.add('active');
+    }, 300);
 }
 
-
-export async function drawMessage(sender, text, chat_messages_container) {
-    if (text !== null && text !== undefined && text !== NaN && text !== '') {
+async function drawMessageForWideScreen(sender, text, chat_messages_container) {
         if (isWriting) {
             // A message is currently being written, so wait for it to complete before adding the new message.
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -141,6 +145,15 @@ export async function drawMessage(sender, text, chat_messages_container) {
             // Call the function to add characters
             await appendCharacter();
         }, 300);
+}
+
+export async function drawMessage(sender, text, chat_messages_container) {
+    if (text !== null && text!== undefined && text!== NaN && text!== '') {
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+            await drawMessageForWideScreen(sender, text, chat_messages_container);
+        } else {
+            drawMessageMobile(sender, text, chat_messages_container);
+        }
     }
 }
 
