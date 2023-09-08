@@ -106,6 +106,20 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
     }
 }
 
+
+async function addLoadingToMessageContainer(messageContainer) {
+    const loading = document.createElement("img");
+    await fetch("/static/imahes/loading.gif")
+    .then(async response => await response.blob())
+    .then(async blob => {
+        const loading_gif_container = document.createElement('div');
+        loading_gif_container.className = "loading_gif_container";
+        loading.src = URL.createObjectURL(blob);
+        loading_gif_container.appendChild(loading);
+        messageContainer.appendChild(loading_gif_container);
+    });
+}
+
 function drawMessageMobile(sender, text, chat_messages_container) {
     const messageContainer = document.createElement('div');
     const messageElement = document.createElement('div');
@@ -168,6 +182,5 @@ export async function drawMessage(sender, text, chat_messages_container) {
 
 
 export function scrollToBottom(message_container) {
-    //message_container.scrollTop = message_container.scrollHeight;
-    //message_container.scroll({top: 0, behavior: "smooth"});
+    message_container.scrollTop = message_container.scrollHeight;
 }
