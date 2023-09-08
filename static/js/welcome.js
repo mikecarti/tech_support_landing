@@ -1,6 +1,8 @@
 import { nodeSlidersToJSONSliders } from "./chat_sliders.js";
 import { drawMessage, sendMessageAndGetResponseWelcome } from "./chat_functionality.js";
 import { dialogues } from "./dialogues.js";
+console.log(dialogues);
+import Utils from "./utils.js";
 
 const welcome_sliders = document.querySelectorAll("input[type='range']");
 const chat_container = document.getElementById("chat-popup");
@@ -51,17 +53,30 @@ async function welcome_chat(){
 }
 
 
+async function oldChat(dialogues, chat_window, chat_msg_container) {
+  const dialogue_number = Utils.getRandomInt(0, dialogues.length);
+  chat_window.style.bottom = `0px`;
+  var sender_id = 1;
+  if (window.matchMedia("(min-width: 1024px)").matches) {
+    for (let i = 0; i < dialogues[dialogue_number].length; i++) {
+      await drawMessage(senders[sender_id%2], dialogues[dialogue_number][i], chat_msg_container);
+      sender_id += 1;
+    }
+  } else {
+    for (let i = 0; i < dialogues[dialogue_number].length; i++) {
+      drawMessage(senders[sender_id%2], dialogues[dialogue_number][i], chat_msg_container);
+      sender_id += 1;
+      await sleep(1000);
+    }
+  }
+}
+
 
 window.addEventListener("DOMContentLoaded", async () => {
   if (!skip_intro) {
     const gif = document.createElement("img");
-    const dialog_number = Math.floor(Math.random() * (dialogues.length - 0 + 1) + 0);
-    chat_container.style.bottom = "0px";
-    var sender_id = 1;
-    for (let i = 0; i < dialogues[dialog_number].length; i++) {
-      await drawMessage(senders[sender_id%2], dialogues[dialog_number][i], welcomeMessageContainer);
-      sender_id += 1;
-    }
+    await oldChat(dialogues, chat_container, welcomeMessageContainer);
+
     await fetch("/static/images/hammer.gif")
     .then(async response => await response.blob())
     .then(blob => {
