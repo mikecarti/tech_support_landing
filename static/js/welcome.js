@@ -32,7 +32,8 @@ async function welcome_chat(){
   console.log(getComputedStyle(scren_h).maxHeight)
 
   while (!window.cancelWelcome) {
-    for (let i = 0; i < 5; i++) {
+    // my attempt to decrease i to curr. number of dialogs
+    for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 5; j++) {
         cnt += 1;
         if (cnt === 30) {
