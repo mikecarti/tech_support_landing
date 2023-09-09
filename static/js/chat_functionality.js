@@ -34,7 +34,7 @@ export async function sendMessageAndGetResponseWelcome(message, chat_messages_co
     if (message !== '') {
         if (!window.cancelWelcome) {
 
-            drawMessage(senders[0], message, chat_messages_container);
+            await drawMessage(senders[0], message, chat_messages_container);
         }
         scrollToBottom(chat_messages_container);
         var combinedData = combineMessageAndSliders(message, nodeSliders);
@@ -47,10 +47,10 @@ export async function sendMessageAndGetResponseWelcome(message, chat_messages_co
             body: JSON.stringify(combinedData)
         })
             .then(async response => await response.json())
-            .then(data => {
+            .then(async data => {
                 console.log(data);
                 if (!window.cancelWelcome) {
-                    drawMessage(senders[1], data.response, chat_messages_container);
+                    await drawMessage(senders[1], data.response, chat_messages_container);
                 }
                 scrollToBottom(chat_messages_container);
             })

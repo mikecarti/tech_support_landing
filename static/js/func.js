@@ -1,3 +1,5 @@
+import Utils from "./utils.js";
+
 class Func {
 
     constructor() {
@@ -26,22 +28,18 @@ class Func {
     }
 
     change_message_color(color) {
-        console.log(color);
-        var styleElement = document.getElementById("customMessageColor");
-        if (!styleElement) {
-            styleElement = document.createElement("customMessageColor");
-            styleElement.id = "customMessageColor";
-        }
-
-        const newCSSRule = `.message-giga-user { background-color: ${color};}`;
-        console.log(newCSSRule);
-        if (styleElement.sheet && styleElement.sheet.insertRule) {
-            styleElement.sheet.insertRule(newCSSRule, 0);
-        } else if (styleElement.styleSheet && styleElement.styleSheet.addRule) {
-            styleElement.styleSheet.addRule(newCSSRule);
-        }
-        console.log(styleElement);
+        const styleElement = document.createElement("style");
+        styleElement.innerHTML = `.message-giga-user {background-color: ${color};}`;
+        document.head.appendChild(styleElement);
     }
+
+    randomize_personality_sliders(values) {
+        const sliders = document.querySelectorAll("input[type='range']");
+        sliders.forEach((slider, index) => {
+            Utils.setSliderValue(slider, values[index]);
+        });
+    }
+
 }
 
 export const func_call_checker = new Func();
