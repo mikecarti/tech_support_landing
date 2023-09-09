@@ -31,6 +31,7 @@ ADD_MESSAGE_URL = f"{HELPDESK_URL}/add_message"
 ANSWER_MESSAGE_URL = f"{HELPDESK_URL}/answer_message"
 CLEAR_MEMORY_URL = f"{HELPDESK_URL}/clear_memory/" + "{user_id}"
 ASKER_QUESTION_URL = f"{ASKER_URL}/get_question"
+HINT_URL = f"{HELPDESK_URL}/get_hint/" + "{user_id}"
 
 LIMIT_EXCEEDED_CODE = 429
 ASKER_BOT_ID = "asker_bot"
@@ -40,6 +41,18 @@ ASKER_BOT_ID = "asker_bot"
 def index():
     return render_template("index.html")
 
+
+@app.route("/get_hint", methods=["GET"])
+def get_hint():
+    if request.environ.get("HTTP_X_FORWARDED_FOR"):
+        user_id = request.environ["HTTP_X_FORWARDED_FOR"]
+    else:
+        user_id = request.environ["REMOTE_ADDR"]
+
+    url = HINT_URL.format(user_id=user_id)
+    hint_payload: TowardsFrontendPayload = requests.post(url)
+    print(hint_payload.json())
+    return hint_payload.json()
 
 @app.route("/images/<filename>")
 def get_animation(filename):
@@ -148,6 +161,7 @@ def receive_answer(user_id: str, sliders: dict[str, int]) -> TowardsFrontendPayl
 def clear_memory(user_id) -> TowardsFrontendPayload:
     url = CLEAR_MEMORY_URL.format(user_id=user_id)
     payload = TowardsFrontendPayload(**requests.post(url).json())
+    print(payload)
     return payload
 
 

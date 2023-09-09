@@ -2,6 +2,7 @@ import {nodeSlidersToJSONSliders} from "./chat_sliders.js";
 import {func_call_checker} from "./func.js";
 import { sleep } from "./welcome.js";
 import Utils from "./utils.js";
+import { timer } from "./inactivity_timer.js";
 
 let isWriting = false;
 let isAllowedToSend = true; // Изначально разрешаем отправку сообщений
@@ -19,16 +20,6 @@ function combineMessageAndSliders(message, nodeSliders) {
     return combinedData;
 
 }
-
-function sendHint() {
-
-}
-
-function waitForLLMAnimation(user_message_container) {
-
-}
-
-
 
 export async function sendMessageAndGetResponseWelcome(message, chat_messages_container, nodeSliders, endpoint, senders) {
     if (message !== '') {
@@ -64,6 +55,7 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
     const sendButton = document.getElementById('giga-chat-send-button'); // Получаем кнопку по ее ID
 
     if (message !== '') {
+        timer.disableTimer()
         // Запретить отправку сообщений, если isAllowedToSend равно false
         if (!isAllowedToSend) {
             console.log("Не разрешено отправлять сообщения.");
@@ -112,8 +104,9 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
                 last_llm_message.textContent = data.response;*/
                 
                
-                drawMessage(senders[1], data.response, chat_messages_container);
+                await drawMessage(senders[1], data.response, chat_messages_container);
                 scrollToBottom(chat_messages_container);
+                await timer.setTimer(chat_messages_container)
                 
                 
             } else {
@@ -125,8 +118,10 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
             // Включить кнопку отправки после получения ответа или ошибки
             isAllowedToSend = true;
             sendButton.disabled = false; // Включить кнопку отправки
+            
         }
     }
+    
 }
 
 function drawMessageMobile(sender, text, chat_messages_container) {
@@ -147,7 +142,7 @@ async function drawMessageForWideScreen(sender, text, chat_messages_container) {
         if (isWriting) {
             // A message is currently being written, so wait for it to complete before adding the new message.
             await new Promise(resolve => setTimeout(resolve, 100));
-            return drawMessageForWideScreen(sender, text, chat_messages_container); // Retry adding the message after a delay.
+            return await drawMessageForWideScreen(sender, text, chat_messages_container); // Retry adding the message after a delay.
         }
 
         const messageContainer = document.createElement('div');
