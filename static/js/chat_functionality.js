@@ -37,7 +37,8 @@ export async function sendMessageAndGetResponseWelcome(message, chat_messages_co
             drawMessage(senders[0], message, chat_messages_container);
         }
         scrollToBottom(chat_messages_container);
-        const combinedData = combineMessageAndSliders(message, nodeSliders);
+        var combinedData = combineMessageAndSliders(message, nodeSliders);
+        combinedData.message_from_asker = true;
         await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -83,7 +84,8 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         last_llm_message.textContent = "";
         last_llm_message.classList.add("incoming");
 
-        const combinedData = combineMessageAndSliders(message, nodeSliders);
+        var combinedData = combineMessageAndSliders(message, nodeSliders);
+        combinedData.message_from_asker = false;
         try {
             const response = await fetch(endpoint, {
                 method: 'POST',
