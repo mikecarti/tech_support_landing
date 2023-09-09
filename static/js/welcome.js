@@ -17,7 +17,7 @@ const right_container = document.getElementById("right-subcontainer");
 const senders = ["user", "llm"]
 const giga_senders = ["giga-asker", "giga-llm"]
 window.cancelWelcome = false;
-const skip_intro = true;
+const skip_intro = false;
 
 export async function sleep(ms) {
     return new Promise(async resolve => await setTimeout(resolve, ms));
