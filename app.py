@@ -55,7 +55,7 @@ def welcome():
         "text": "",
         "sliders": sliders,
         "required_question_index": data["data"]["required_question_index"],
-        "required_dialog_index": data["data"]["required_question_index"]
+        "required_dialog_index": data["data"]["required_dialog_index"]
     }
     question = requests.get(ASKER_QUESTION_URL, json=payload).json()
     return jsonify({"response": question})

@@ -21,6 +21,10 @@ class Utils {
         element.animate({height: newHeight}, 500)
         console.log(element.offsetHeight);
     }
+
+    static sendHint() {
+        
+    }
 }
 
 export default Utils;
