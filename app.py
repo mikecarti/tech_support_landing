@@ -79,7 +79,7 @@ def send_message_to_api():
         response: TowardsFrontendPayload = clear_memory(user_id)
     else:
         send_message_to_processing(user_input, user_id)
-        sleep(1)
+        sleep(0.5)
         response: TowardsFrontendPayload = receive_answer(user_id, sliders)
         if status_code_error(response):
             return jsonify({'status_code': response.get("status_code")})
@@ -132,14 +132,8 @@ def send_message_to_processing(text: str, user_id: str) -> None:
 
 def receive_answer(user_id: str, sliders: dict[str, int]) -> TowardsFrontendPayload | dict:
     print("\n\n", sliders, "\n\n")
-    while True:
-        response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "sliders": sliders})
-        print("\n\n", response.json(), "\n\n")
-        wait_btw_retries_seconds = 3
-        sleep(wait_btw_retries_seconds)
-        logger.warning(f"Anti-Spam limit exceeded. Retrying in {wait_btw_retries_seconds} seconds...")
-        if response.status_code != LIMIT_EXCEEDED_CODE:
-            break
+    response = requests.post(ANSWER_MESSAGE_URL, json={"user_id": user_id, "sliders": sliders})
+    print("\n\n", response.json(), "\n\n")
 
     if response.status_code == 200:
         payload = TowardsFrontendPayload(**response.json())
