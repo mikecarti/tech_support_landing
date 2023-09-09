@@ -33,6 +33,7 @@ CLEAR_MEMORY_URL = f"{HELPDESK_URL}/clear_memory/" + "{user_id}"
 ASKER_QUESTION_URL = f"{ASKER_URL}/get_question"
 
 LIMIT_EXCEEDED_CODE = 429
+ASKER_BOT_ID = "asker_bot"
 
 
 @app.route("/")
@@ -66,6 +67,10 @@ def send_message_to_api():
         user_id = request.environ["HTTP_X_FORWARDED_FOR"]
     else:
         user_id = request.environ["REMOTE_ADDR"]
+    message_from_asker = request.args.get("message_from_asker", type=bool)
+
+    if message_from_asker:
+        user_id += f":{ASKER_BOT_ID}"
 
     chat_data = request.get_json()
     user_input = chat_data["chat"]["message"]
