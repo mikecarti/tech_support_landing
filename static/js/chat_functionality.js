@@ -79,6 +79,7 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         */
         var combinedData = combineMessageAndSliders(message, nodeSliders);
         combinedData.message_from_asker = false;
+        console.log(combinedData);
         try {
             const response = await fetch(endpoint, {
                 method: 'POST',

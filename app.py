@@ -80,12 +80,14 @@ def send_message_to_api():
         user_id = request.environ["HTTP_X_FORWARDED_FOR"]
     else:
         user_id = request.environ["REMOTE_ADDR"]
-    message_from_asker = request.args.get("message_from_asker", type=bool)
+
+    chat_data = request.get_json()
+    message_from_asker = chat_data["message_from_asker"]
 
     if message_from_asker:
         user_id += f":{ASKER_BOT_ID}"
 
-    chat_data = request.get_json()
+    
     user_input = chat_data["chat"]["message"]
     sliders = get_sliders(slider_data=chat_data["sliders"], bot_type=BotType.HELPDESK_BOT)
     if user_input == "/clear":

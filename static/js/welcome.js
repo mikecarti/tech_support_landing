@@ -26,10 +26,6 @@ export async function sleep(ms) {
 async function welcome_chat(){
   var cnt = 0;
   const scren_h = document.getElementById("phone-screen-container")
-  console.log(scren_h.offsetHeight)
-  console.log(getComputedStyle(scren_h).maxHeight)
-  scren_h.style.maxHeight = `${scren_h.offsetHeight + 100}px`
-  console.log(getComputedStyle(scren_h).maxHeight)
   if (window.cancelWelcome) {
     return
   }

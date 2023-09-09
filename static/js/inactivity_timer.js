@@ -28,7 +28,6 @@ class inactivityTimer {
                 throw new Error('Ошибка HTTP: ' + response.status);
             }
             const data = await response.json();
-            console.log(data.text);
             return data.text; // Возвращаем значение data.text
         } catch (error) {
             console.error('Произошла ошибка:', error);
