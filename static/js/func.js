@@ -33,7 +33,7 @@ class Func {
         document.head.appendChild(styleElement);
     }
 
-    randomize_personality_sliders(values) {
+    randomize_personality_sliders(...values) {
         const sliders = document.querySelectorAll("input[type='range']");
         sliders.forEach((slider, index) => {
             Utils.setSliderValue(slider, values[index]);

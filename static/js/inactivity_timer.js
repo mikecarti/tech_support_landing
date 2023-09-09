@@ -2,7 +2,7 @@ import { drawMessage } from "./chat_functionality.js";
 
 class inactivityTimer {
     constructor() {
-        this.timeOut = 35000 //ms
+        this.timeOut = 40000 //ms
     }
 
     async setTimer(chat_message_container) {
