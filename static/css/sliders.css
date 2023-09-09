@@ -16,7 +16,7 @@
 
 .sliders {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 
 .sliders-popup-button {
@@ -72,13 +72,26 @@
   }
 
 .sliders .sliders_owner {
-  color: white;
+  color: rgb(88, 88, 88);
   font-family: "RFTone";
   font-size: 22pt;
+  font-weight: bold;
+  width: 70%;
+  text-align: center;
 }
 
 .sliders .slider_name {
-  color: white;
+  color: rgb(255, 255, 255);
   font-family: "RFTone";
   font-size: 12pt
+}
+
+#support_owner {
+  border-radius: 0px 10px 10px 10px;
+  background-color: #bcadfa;
+}
+
+#client_owner {
+  border-radius: 10px 0px 10px 10px;
+  background-color: #cca4d2;
 }

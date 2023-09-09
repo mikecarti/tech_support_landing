@@ -15,9 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/giga-styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main-styles.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/slide_show.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sliders.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/popup_sliders.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/plashka.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive.css') }}">
     
@@ -34,10 +32,10 @@
                 <div class="naming" id="naming">Neuro<br>Square</div>
             </div>
         </div>
-        
+        <!--
         <div class="trial-container" id="trial-container">
             <button class="trial" id="trial">Start free trial</button>
-        </div>
+        </div>-->
         
     </div>
     <div class="main-container">
@@ -86,40 +84,7 @@
             <div class="giga-chat-overlay" id="giga-chat-overlay"></div>
         </div>
         <div class="right-subcontainer" id="right-subcontainer">
-            <div class="sliders-container" id="sliders-container">
-            
-                <div class="sliders" id="sliders">
-                    <div class="sliders-subcontainer">
-                        <div class="sliders_owner">Клиент</div>
-                        <div class="slider_name">Злость</div>
-                        <input type="range" min="0" max="3" value="0" step="1" id="anger-level">
-                        <div class="slider_name">Безграмотность</div>
-                        <input type="range" min="0" max="3" value="0" step="1" id="misspelling_level">
-                        <div class="slider_name">Беспокойность</div>
-                        <input type="range" min="0" max="3" value="0" step="1" id="anxiety_level">
-                        <div class="slider_name">Объём текста</div>
-                        <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
-                    </div>
-                    
-                    <div class="sliders-subcontainer">
-                        <div class="sliders_owner">Поддержка</div>
-                        <div class="slider_name">Вежливость</div>
-                        <input type="range" min="0" max="3" value="0" step="1" id="politeness_level">
-                        <div class="slider_name">Эмоциональность</div>
-                        <input type="range" min="0" max="3" value="0" step="1" id="emotion_level">
-                        <div class="slider_name">Юмор</div>
-                        <input type="range" min="0" max="3" value="0" step="1" id="humor_level">
-                        <div class="slider_name">Объём текста</div>
-                        <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
-                    </div>
-                    
-                </div>
-                <button class="sliders-popup-button" id="sliders-popup-button">
-                    <img src="{{ url_for('static', filename='images/open_sliders.png') }}" alt="Send" id="sliders-popup-img">
-                </button>
-            </div>
-            <div class="about-us" id="about-us">
-               
+            <div class="about-us" id="about-us"> 
                 <div class="welcome-header">NeuroSquare: путь к инновационным решениям!</div>
                 <div class="plashki">
                     <div class="plashka">
@@ -158,6 +123,38 @@
                     </div>
                 </div>
             </div>
+            <div class="sliders-container" id="sliders-container">
+                <div class="sliders" id="sliders">
+                    <div class="sliders-subcontainer" id="sliders-subcontainer">
+                        <div class="sliders_owner" id="client_owner">Клиент</div>
+                        <div class="slider_name">Злость</div>
+                        <input type="range" min="0" max="3" value="0" step="1" id="anger-level">
+                        <div class="slider_name">Безграмотность</div>
+                        <input type="range" min="0" max="3" value="0" step="1" id="misspelling_level">
+                        <div class="slider_name">Беспокойность</div>
+                        <input type="range" min="0" max="3" value="0" step="1" id="anxiety_level">
+                        <div class="slider_name">Объём текста</div>
+                        <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
+                    </div>
+                    
+                    <div class="sliders-subcontainer" id="sliders-subcontainer">
+                        <div class="sliders_owner" id="support_owner">Поддержка</div>
+                        <div class="slider_name">Вежливость</div>
+                        <input type="range" min="0" max="3" value="0" step="1" id="politeness_level">
+                        <div class="slider_name">Эмоциональность</div>
+                        <input type="range" min="0" max="3" value="0" step="1" id="emotion_level">
+                        <div class="slider_name">Юмор</div>
+                        <input type="range" min="0" max="3" value="0" step="1" id="humor_level">
+                        <div class="slider_name">Объём текста</div>
+                        <input type="range" min="0" max="3" value="0" step="1" id="extensiveness_level">
+                    </div>
+                    
+                </div>
+                <button class="sliders-popup-button" id="sliders-popup-button">
+                    <img src="{{ url_for('static', filename='images/open_sliders.png') }}" alt="Send" id="sliders-popup-img">
+                </button>
+            </div>
+            
         </div>
         
         
@@ -182,7 +179,6 @@
     <script type="module" src="{{ url_for('static', filename='js/giga_chat_event_listeners.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/func.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/utils.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='js/slides.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/popup_sliders.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/welcome.js') }}"></script>
 </body>

@@ -29,13 +29,6 @@ export function sendSlidersDataToEndpoint(sliders, endpoint) {
     console.log(url);
 }
 
-sliders.forEach((slider) => {
-    slider.addEventListener("input", () => {
-        handleSliderChange(slider.id, slider.value);
-        // sendSliderDataToBackend(slider.id, slider.value);
-    });
-});
-
 sliders_popup_button.addEventListener("click", () => {
     if (isSldersOpen) {
         sldiers_button_image.style.transform = `rotate(0deg)`;

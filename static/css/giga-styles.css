@@ -68,6 +68,16 @@
     transform: rotate(45deg);
 }
 
+.giga-chat-square::after {
+    content: "";
+    position: absolute;
+    top: 17.5%;
+    left: 17.5%;
+    width: 65%;
+    aspect-ratio: 1/1;
+    background-color: #e9e4e4;
+}
+
 .giga-chat-naming-container {
     display: flex;
     align-items: center;
@@ -123,25 +133,27 @@
 }
 
 .message-container.active {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0) scale(1) ;
     opacity: 1;
 
 }
 
 .message-container {
-    transform-origin: bottom;
+    will-change: transform;
     position: relative;
     bottom: 0;
     padding-left: 7%;
     padding-right: 7%;
     display: flex;
     width: 100%;
+    
     box-sizing: border-box;
-    transform: translateY(100%); /* Initially, messages are hidden below */
+    transform: translate3d(0, 100%, 0) scale(0); /* Initially, messages are hidden below */
     opacity: 0; /* Initially, messages are invisible */
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Define the transition */
+    
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Define the transition */
+    
 }
-
 
 .message-giga-user{
     font-family: "RFTone";

@@ -74,16 +74,15 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         sendButton.disabled = true; // Отключить кнопку отправки
 
         await drawMessage(senders[0], message, chat_messages_container);
-        /*
+
         // scrollToBottom(chat_messages_container);
-        await sleep(600);
+        await sleep(1200);
         await drawMessage(senders[1], "_", chat_messages_container);
-        Utils.animateHeight(chat_messages_container, 500);
         const llm_messages = document.querySelectorAll(".message-giga-llm")
         const last_llm_message = llm_messages[llm_messages.length - 1];
         last_llm_message.textContent = "";
         last_llm_message.classList.add("incoming");
-        */
+
         const combinedData = combineMessageAndSliders(message, nodeSliders);
         try {
             const response = await fetch(endpoint, {
@@ -105,12 +104,13 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
                 } else {
                     console.log("No function call is needed");
                 }
-                /*
+                
                 last_llm_message.classList.remove("incoming");
                 last_llm_message.textContent = data.response;
-                */
+                
+               /*
                 drawMessage(senders[1], data.response, chat_messages_container);
-                scrollToBottom(chat_messages_container);
+                scrollToBottom(chat_messages_container);*/
                 
                 
             } else {
@@ -124,30 +124,6 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
             sendButton.disabled = false; // Включить кнопку отправки
         }
     }
-}
-
-
-async function addLoadingAnimToChat(chatMessageContainer) {
-    /*
-    const loading = document.createElement("img");
-    const messageElement = document.createElement('div');
-    const messageContainer = document.createElement('div');
-    await fetch("/static/images/loading.gif")
-    .then(async response => await response.blob())
-    .then(async blob => {
-        messageElement.className  = `message-giga-llm`;
-        messageContainer.className = `message-container`;
-        loading.src = URL.createObjectURL(blob);
-        messageElement.appendChild(loading);
-        messageContainer.appendChild(messageElement);
-        chatMessageContainer.appendChild(messageContainer);
-        messageContainer.classList.add('active');
-    });
-    */
-    const messageElement = document.createElement('div');
-    const messageContainer = document.createElement('div');
-
-
 }
 
 function drawMessageMobile(sender, text, chat_messages_container) {

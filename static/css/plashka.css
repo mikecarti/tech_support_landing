@@ -24,8 +24,10 @@
     font-family: "RFTone";
     height: 100%;
     width: 33.33%;
-    font-size: 12pt;
-    background-color: #4d4d4d67;
+    font-size: 5vh;
+    /* background-color: #4d4d4d67;*/
+    background: linear-gradient(113deg, rgba(201, 201, 201, 0.329) 1.62%, rgba(196, 196, 196, 0.10) 117.4%);
+    
     border-radius: 15px 15px 15px 15px;
     
 }
@@ -49,5 +51,6 @@
 }
 
 .content {
-    font-size: 12pt;
+    
+    font-size: 2vh;
 }

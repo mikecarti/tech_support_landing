@@ -2,7 +2,9 @@ class Func {
 
     constructor() {
         this.available_functions = [
-            "change_background_color"
+            "change_background_color",
+            "randomize_personality_sliders",
+            "change_message_color"
             ];
     }
 
@@ -21,6 +23,24 @@ class Func {
     change_background_color(color) {
         const body_obj = document.body;
         body_obj.style.backgroundColor = color;
+    }
+
+    change_message_color(color) {
+        console.log(color);
+        var styleElement = document.getElementById("customMessageColor");
+        if (!styleElement) {
+            styleElement = document.createElement("customMessageColor");
+            styleElement.id = "customMessageColor";
+        }
+
+        const newCSSRule = `.message-giga-user { background-color: ${color};}`;
+        console.log(newCSSRule);
+        if (styleElement.sheet && styleElement.sheet.insertRule) {
+            styleElement.sheet.insertRule(newCSSRule, 0);
+        } else if (styleElement.styleSheet && styleElement.styleSheet.addRule) {
+            styleElement.styleSheet.addRule(newCSSRule);
+        }
+        console.log(styleElement);
     }
 }
 
