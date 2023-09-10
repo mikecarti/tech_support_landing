@@ -61,6 +61,8 @@ async function welcome_chat(){
       })
       }
     }
+    await sleep(2500);
+    drawMessage("chat-out", "Клиент вышел из чата.", giga_chat_message_container)
 }
 
 
