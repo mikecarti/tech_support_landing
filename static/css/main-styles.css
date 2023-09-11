@@ -12,6 +12,12 @@ html {
     src: url("fonts/RFTone-Light.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "RFTone";
+    src: url("fonts/RFTone-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+
 body {
     margin: 0;
     background-color: #000;

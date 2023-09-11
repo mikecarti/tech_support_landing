@@ -24,21 +24,12 @@ export async function sleep(ms) {
 }
 
 async function welcome_chat(){
-  var cnt = 0;
-  const scren_h = document.getElementById("phone-screen-container")
   if (window.cancelWelcome) {
     return
   }
     // my attempt to decrease i to curr. number of dialogs
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 5; j++) {
-        cnt += 1;
-        if (cnt === 30) {
-          window.cancelWelcome = true;
-        }
-        if (window.cancelWelcome) {
-          return
-        }
         var sliders = nodeSlidersToJSONSliders(welcome_sliders);
         var data  = {
           sliders: sliders,
@@ -56,13 +47,16 @@ async function welcome_chat(){
         })
         .then(async response => await response.json())
         .then(async data => {
-          console.log(data);
+          // console.log(data);
           await sendMessageAndGetResponseWelcome(data.response, giga_chat_message_container, welcome_sliders, "/send-message", giga_senders);
       })
       }
     }
     await sleep(2500);
-    drawMessage("chat-out", "Клиент вышел из чата.", giga_chat_message_container)
+    if (!window.cancelWelcome) {
+      drawMessage("chat-out", "Клиент вышел из чата.", giga_chat_message_container)
+    }
+    
 }
 
 

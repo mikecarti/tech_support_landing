@@ -4,6 +4,7 @@ import { sleep } from "./welcome.js";
 import Utils from "./utils.js";
 import { timer } from "./inactivity_timer.js";
 
+const typing_anim = document.getElementById("typing")
 let isWriting = false;
 let isAllowedToSend = true; // Изначально разрешаем отправку сообщений
 
@@ -67,9 +68,12 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         sendButton.disabled = true; // Отключить кнопку отправки
 
         await drawMessage(senders[0], message, chat_messages_container);
+        
 
         // scrollToBottom(chat_messages_container);
-        await sleep(1200);
+        await sleep(1500);
+        typing_anim.classList.add("startup");
+        
         /*
         await drawMessage(senders[1], "_", chat_messages_container);
         const llm_messages = document.querySelectorAll(".message-giga-llm")
@@ -79,8 +83,8 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
         */
         var combinedData = combineMessageAndSliders(message, nodeSliders);
         combinedData.message_from_asker = false;
-        console.log(combinedData);
         try {
+            
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
@@ -104,7 +108,7 @@ export async function sendMessageAndGetResponse(message, chat_messages_container
                 last_llm_message.classList.remove("incoming");
                 last_llm_message.textContent = data.response;*/
                 
-               
+                typing_anim.classList.remove("startup");
                 await drawMessage(senders[1], data.response, chat_messages_container);
                 scrollToBottom(chat_messages_container);
                 await timer.setTimer(chat_messages_container)
@@ -175,7 +179,7 @@ async function drawMessageForWideScreen(sender, text, chat_messages_container) {
         }, 300);
 }
 
-export async function drawMessage(sender, text, chat_messages_container) {
+export async function drawLLMMessage(sender, text, chat_messages_container) {
     if (text !== null && text!== undefined && text!== NaN && text!== '') {
         if (window.matchMedia("(min-width: 1024px)").matches) {
             await drawMessageForWideScreen(sender, text, chat_messages_container);
@@ -205,18 +209,17 @@ export function scrollToBottom(message_container) {
 }
 
 
-export async function drawMessage_NOT_STABLE(sender, text, chat_messages_container) {
-    const sender_entity = sender.split('-')[0];
+export async function drawMessage(sender, text, chat_messages_container) {
+    const sender_entity = sender.split('-')[1];
     switch (sender_entity) {
         case "user":
             drawUserMessage(sender, text, chat_messages_container);
             break;
+        
+        default:
+            await drawLLMMessage(sender, text, chat_messages_container);
+            console.log("default case");
 
-        case "llm":
-            console.log(sender_entity);
-
-        case "asker":
-            console.log(sender_entity);
     }
 }
 
