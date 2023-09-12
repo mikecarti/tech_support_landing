@@ -1,0 +1,146 @@
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: "Days One Cyrillic";
+    src: url("fonts/DaysOne-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "RFTone";
+    src: url("fonts/RFTone-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "RFTone";
+    src: url("fonts/RFTone-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+    background-color: #000;
+}
+
+.right-subcontainer {
+    width: 50%;
+    padding: 3%;
+    padding-top: 0;
+    padding-left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.right-subcontainer.active {
+    opacity: 1;
+}
+
+.main-container {
+    display: flex;
+    height: 90vh;
+}
+
+.upper-side {
+    display: flex;
+    align-items: center;
+    height: 10vh;
+}
+
+
+.trial-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -2;
+    position: relative;
+    margin-left: auto;
+    margin-right: 5%;
+    background-color: blueviolet;
+    background: linear-gradient(to right, #6DDCFF, #7F60F9);
+    border-radius: 25px;
+    width: 9%;
+    min-height: 50%;
+}
+
+.trial-container::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 2.5%;
+    left: 0.5%;
+    width: 99%;
+    height: 95%;
+    border-radius: 25px;
+    background-color: rgb(0, 0, 0);
+}
+
+.trial {
+    z-index: 2;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    background-color: transparent;
+    border-radius: 10px;
+    color: #fff;
+    font-family: "RFTone";
+    text-align: center;
+    flex-grow: 0;
+    
+}
+
+.main-logo {
+    width: 30%;
+    height: 100%;
+    display: flex;
+}
+
+.square-container {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square {
+    position: relative;
+    margin-left: 20px;
+    height: 40%;
+    aspect-ratio: 1/1;
+    background-color: white;
+    background: linear-gradient(to right, #6DDCFF, #7F60F9);
+    transform: rotate(45deg);
+}
+
+.square::after {
+    content: "";
+    position: absolute;
+    top: 12.5%;
+    left: 12.5%;
+    width: 75%;
+    aspect-ratio: 1/1;
+    background-color: rgb(0, 0, 0);
+}
+
+.naming-container {
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+.naming {
+    color: white;
+    white-space: pre-wrap;
+    font-size: 30px;
+    font-family: 'Days One', sans-serif;
+    text-transform: uppercase;
+    line-height: 28.5px;
+}
+
+.gif-container {
+    position: fixed;
+    opacity: 1;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}

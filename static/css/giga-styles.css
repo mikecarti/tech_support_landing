@@ -1,0 +1,379 @@
+.giga-chat-container {
+    width: 50%;
+    justify-content: center;
+    padding: 3%;
+    display: flex;
+}
+
+.giga-chat-overlay {
+    border-radius: 50px;
+    z-index: 0;
+    position: absolute;
+    width: 550px;
+    height: 700px;
+    background: linear-gradient(to bottom, #7F60F9, #6DDCFF, #7F60F9);
+    filter: blur(100px);
+    opacity: 0;
+    transition: 1.3s ease-in-out;
+}
+
+.giga-chat-overlay.active {
+    opacity: 1;
+}
+
+.giga-chat {
+    position: relative;
+    z-index: 1;
+    width: 450px;
+    height: 700px;
+    background-color: #E9E4E4;
+    border-radius: 50px;
+    transition: 1s ease-in-out;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+}
+
+.giga-chat.active {
+    opacity: 1;
+}
+
+.giga-chat-close-button-container {
+    justify-content: center;
+    align-items: center;
+    padding: 5px 5px;
+    height: 7%;
+}
+
+.giga-chat-logo {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.giga-chat-square-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.giga-chat-square {
+    position: relative;
+    width: 23px;
+    aspect-ratio: 1/1;
+    background-color:#000000;
+    transform: rotate(45deg);
+}
+
+.giga-chat-square::after {
+    content: "";
+    position: absolute;
+    top: 17.5%;
+    left: 17.5%;
+    width: 65%;
+    aspect-ratio: 1/1;
+    background-color: #e9e4e4;
+}
+
+.giga-chat-naming-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.giga-chat-naming {
+    color: rgb(0, 0, 0);
+    white-space: pre-wrap;
+    font-size: 30px;
+    font-family: 'Days One', sans-serif;
+    line-height: 28.5px;
+}
+
+.giga-chat-close-button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: 32px; /* Увеличьте размер икони */
+    line-height: 1;   
+}
+
+.giga-chat-separator {
+    z-index: 1003;
+    height: 2px;
+    background-color: #4d4d4d7a;
+    position: relative;
+    margin: 0px 0; 
+}
+
+.typing {
+    font-family: "RFTone";
+    position: absolute;
+    bottom: 0.2%;
+    left: 7.5%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.typing.startup {
+    opacity: 1;
+    
+    
+}
+
+.typing::after {
+    content: "Печатает";
+    animation: typing 2s infinite;
+    
+}
+
+.phone-screen-container {
+    height: 70%;
+    width: 100%;
+    background-color: white;
+    background-image: url("/static/images/phone_screen_neg_6.png");
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    transition: 0.3s ease-in-out;
+    
+}
+
+.giga-chat-messages {
+    z-index: 5;
+    background-color: transparent;
+    scroll-behavior: smooth;
+    padding-bottom: 2%;
+    
+    
+}
+
+.message-container.active {
+    transform: translate3d(0, 0, 0) scale(1) ;
+    opacity: 1;
+
+}
+
+.message-container {
+    will-change: transform;
+    position: relative;
+    bottom: 0;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    width: 100%;
+    
+    box-sizing: border-box;
+    transform: translate3d(0, 100%, 0) scale(0); /* Initially, messages are hidden below */
+    opacity: 0; /* Initially, messages are invisible */
+    
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Define the transition */
+    
+}
+
+.message-giga-user{
+    font-family: "RFTone";
+    float: right;
+    position: relative;
+    margin-left: auto;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    max-width: 300px;
+    width: auto;
+    background-color: #b1e3f9;
+    border-radius: 10px 0px 10px 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.message-giga-user::before {
+    content: "Вы";
+    display: block;
+    font-weight: bold;
+}
+
+.message-giga-llm{
+    font-family: "RFTone";
+    float: left;
+    margin-right: auto;
+    position: relative;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    max-width: 300px;
+    min-width: 100px;
+    width: auto;
+    background-color: #bcaef8;
+    border-radius: 0px 10px 10px 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.message-giga-llm::before {
+    content: "Поддержка";
+    display: block;
+    font-family: "RFTone";
+    font-weight: bold;
+}
+
+.message-giga-llm img{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    opacity: 0.85;
+}
+
+.message-giga-asker{
+    font-family: "RFTone";
+    float: left;
+    margin-left: auto;
+    position: relative;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    max-width: 300px;
+    width: auto;
+    background-color: #e7bced;
+    border-radius: 10px 0px 10px 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.message-giga-asker::before {
+    content: "Клиент";
+    display: block;
+    font-weight: bold;
+}
+
+.message-chat-out {
+    font-family: "RFTone";
+    font-size: 12pt;
+    text-align: center;
+    width: 100%;
+    color: rgb(86, 86, 86);
+    padding-bottom: 3%;
+    width: auto;
+    height: auto;
+    margin: auto;
+    padding: 2%;
+}
+
+.incoming::after {
+    animation: typing 2s infinite;
+    content: "Печатает";
+}
+
+@keyframes typing {
+    
+    25% {
+        content: "Печатает.";
+    }
+
+    50% {
+        content: "Печатает..";
+    }
+
+    75% {
+        content: "Печатает...";
+    } 
+
+}
+
+.preset-buttons-container {
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    bottom: 50%;
+    left: 0;
+}
+
+.sections {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    padding: 10px;
+    column-gap: 30px;
+    row-gap: 15px;
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+.sections button {
+    font-size: 16px;
+    font-family: "RFTone";
+    background-color: rgba(134, 134, 134, 0.459);
+    border-radius: 25px;
+    text-align: center;
+    border: none;
+    z-index: 2;
+}
+
+.giga-chat-input {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.giga-chat-message-input {
+    outline: none;
+    flex: 1;
+    padding: 5px;
+    text-indent: 10%;
+    border-radius: 25px;
+    border-color: #7f60f986;
+    border-style: solid;
+    background: white;
+    height: 28px;
+}
+
+.giga-chat-message-input::placeholder {
+    color: #B8B8B8;
+    font-family: 'Days One Cyrillic', sans-serif;
+    opacity: 1;
+}
+
+.giga-chat-message-input:-ms-input-placeholder {
+    color: #B8B8B8;
+    font-family: 'Days One Cyrillic', sans-serif;
+    opacity: 1;
+}
+
+.giga-chat-message-input::-ms-input-placeholder {
+    color: #B8B8B8;
+    font-family: 'Days One Cyrillic', sans-serif;
+    opacity: 1;
+}
+
+.giga-chat-send-button {
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    border-color: #7f60f986;
+    border-style: solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.giga-chat-send-button img {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    opacity: 0.85;
+}
+
+.slider input[type="range"] {
+    width: 5%;
+    height: 5%;
+}

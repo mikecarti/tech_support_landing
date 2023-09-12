@@ -1,0 +1,128 @@
+@media only screen and (max-width: 1024px) {
+    body {
+        overflow-x: hidden;
+    }
+    .giga-chat-container {
+        order: 1;
+        width: 100%;
+        padding-top: 5%;
+        
+    }
+
+    .giga-chat-overlay {
+        width: 100vw;
+        
+    }
+    .sliders-container {
+        order: 3;
+        padding-top: 5%;
+        align-items: center;
+        z-index: 5;
+        position: fixed;
+        display: flex;
+        height: 100%;
+        width: 350px;
+        transform: translate3d(-100vw, 0, 0);
+        bottom: 0;
+        background-color: rgba(212, 212, 212, 0); /* Цвет фона с прозрачностью */
+        transition: transform 1s ease-in-out;
+        overflow: visible;
+    }
+    
+    .right-subcontainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        order: 2;
+        padding: 0;
+    }
+    
+    .sliders {
+        background-color: rgba(155, 155, 155, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid #ccc;
+        height: 60%;
+        width: 100%;
+        border-radius: 0px 50px 50px 0px;
+    }
+
+    .sliders input[type="range"] {
+        background-color: rgba(255, 255, 255, 0.9);
+        width: 80%;
+    }
+
+    .sliders-popup-button {
+        display: flex;
+        background: rgb(134, 134, 134);
+        width: 5%;
+        height: 10%;
+        border-radius: 0px 15px 15px 0px;
+        align-items: center;
+        justify-content: center;
+        border: none;
+    }
+
+    .giga-chat-container {
+        width: 100%;
+    }
+
+
+    .about-us {
+        order: 4;
+        width: 100%;
+    }
+
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upper-side {
+        display: none;
+    }
+
+    .plashki {
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        padding-left: 2%;
+    }
+    .plashka {
+        width: 85%;
+    }
+
+    #support_owner {
+        border-radius: 0px 10px 10px 10px;
+        font-weight: 100;
+        background-color: transparent;
+        color: white;
+      }
+      
+    #client_owner {
+        border-radius: 10px 0px 10px 10px;
+        font-weight: 100;
+        background-color: transparent;
+        color: white;
+    }
+
+    .welcome-header {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .gif-container {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        top: 0;
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+    }
+
+    .chat-popup {
+        right: 0;
+        width: 100%;
+    }
+}
