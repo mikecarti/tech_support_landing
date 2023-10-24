@@ -33,6 +33,9 @@ async function welcome_chat(){
         if (window.cancelWelcome) {
             return
         }
+        while (document.hidden){
+            await sleep(100);  // While user is not looking at the tab, sleep
+        }
         var sliders = nodeSlidersToJSONSliders(welcome_sliders);
         var data  = {
           sliders: sliders,
